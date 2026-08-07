@@ -8,7 +8,7 @@ import Image from 'next/image';
 
 const Hero = () => {
   return (
-    <div className="flex justify-around items-center">
+    <div className="flex flex-col md:flex-row md:justify-around items-center">
       <div>
            <Chip  color="danger" variant='soft' size="md"> <HeartPulse /> Donate. Inspire. Save</Chip> 
            <h1 className="text-6xl font-bold my-3">Donate Blood, <br /> <span className="text-red-500">Save Lives</span> </h1>
@@ -17,7 +17,7 @@ const Hero = () => {
            <Button size="lg" variant="ghost" className="border border-red-500 text-red-500" ><Persons/> Find Donors</Button>
       </div>
       <div>
-        <Image src={heroImage} alt="Hero Image" width={800}></Image>
+        <Image src={heroImage} alt="Hero Image" width={400}></Image>
       </div>
     </div>
 
