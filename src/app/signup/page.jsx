@@ -24,8 +24,11 @@ import {
   LucideGlobe,
   LucideLoader2,
 } from "lucide-react";
+import { authClient } from "@/lib/auth-client";
+import { useRouter } from "next/navigation";
 
 export default function RegistrationFormCard() {
+  const router  = useRouter();
   const [selectedImage, setSelectedImage] = useState(null);
   const [imagePreview, setImagePreview] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -218,7 +221,21 @@ export default function RegistrationFormCard() {
     }
 
     const formPayload = Object.fromEntries(formData.entries());
-    console.log("Collected Form Data Payload:", formPayload);
+    const { data, error } = await authClient.signUp.email({
+    name: formPayload.fullName,
+    email: formPayload.email,
+    password: formPayload.password,
+    image: formPayload.photoUrl,
+    role: formPayload.role,
+    division: formPayload.division,
+    district: formPayload.district,
+    upazila: formPayload.upazila,
+    callbackURL: "/",
+});
+if(!error){
+    router.push("/");
+}
+    console.log("SignUp successfully", data, error);
 
     setIsSubmitting(false);
   };
