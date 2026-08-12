@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import toast, { Toaster } from 'react-hot-toast';
 import Link from "next/link";
 import Image from "next/image";
 import {
@@ -232,10 +233,16 @@ export default function RegistrationFormCard() {
     upazila: formPayload.upazila,
     callbackURL: "/",
 });
+const notify = () => toast.success('Signup Successfully');
 if(!error){
-    router.push("/");
+    notify()
+    setTimeout(() => {
+      router.push("/");
+    }, 3000);
 }
-    console.log("SignUp successfully", data, error);
+if(error){
+    toast.error(`Signup Failed: ${error.message || "Unknown error"}`);
+}
 
     setIsSubmitting(false);
   };
@@ -620,6 +627,11 @@ if(!error){
           <span>{isSubmitting ? "Creating Account..." : "Create Account"}</span>
         </button>
       </form>
+      <Toaster
+  position="top-right"
+  reverseOrder={false}
+/>
     </div>
+    
   );
 }
