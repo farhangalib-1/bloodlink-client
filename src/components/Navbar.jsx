@@ -4,7 +4,9 @@ import { useState } from "react";
 import {ArrowRightToSquare} from '@gravity-ui/icons';
 import Link from "next/link";
 import { Button, Dropdown } from "@heroui/react";
+import {LucideUserPlus} from "lucide-react"
 import { Droplet, ChevronDown, Xmark } from "@gravity-ui/icons";
+
 
 const navLinks = [
   { label: "Home", href: "/" },
@@ -110,7 +112,7 @@ export default function Navbar() {
           radius="full"
           className="hidden font-semibold lg:flex"
         >
-          <ArrowRightToSquare/> 
+          <LucideUserPlus/>
           Signup 
         </Button>
         </Link>
@@ -184,7 +186,7 @@ export default function Navbar() {
             className="mt-3 w-full font-semibold"
             onPress={() => setIsMenuOpen(false)}
           >
-           <ArrowRightToSquare/> 
+          <LucideUserPlus/>
            Sign Up
           </Button>
        </Link>

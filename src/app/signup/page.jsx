@@ -4,11 +4,13 @@ import React, { useState, useEffect } from "react";
 import toast, { Toaster } from 'react-hot-toast';
 import Link from "next/link";
 import Image from "next/image";
+import { FcGoogle } from "react-icons/fc";
 import {
   Select,
   Label,
   Description,
   ListBox,
+  Button,
 } from "@heroui/react";
 import {
   LucideUser,
@@ -34,17 +36,14 @@ export default function RegistrationFormCard() {
   const [imagePreview, setImagePreview] = useState(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // Dynamic API State
   const [divisions, setDivisions] = useState([]);
   const [districts, setDistricts] = useState([]);
   const [upazilas, setUpazilas] = useState([]);
 
-  // Selected IDs (Used for API calls & component state)
   const [selectedDivisionId, setSelectedDivisionId] = useState("");
   const [selectedDistrictId, setSelectedDistrictId] = useState("");
   const [selectedUpazilaId, setSelectedUpazilaId] = useState("");
 
-  // Selected Names (Used for final form submission payload)
   const [selectedDivisionName, setSelectedDivisionName] = useState("");
   const [selectedDistrictName, setSelectedDistrictName] = useState("");
   const [selectedUpazilaName, setSelectedUpazilaName] = useState("");
@@ -53,7 +52,6 @@ export default function RegistrationFormCard() {
   const [loadingDistricts, setLoadingDistricts] = useState(false);
   const [loadingUpazilas, setLoadingUpazilas] = useState(false);
 
-  // 1. Fetch Divisions
   useEffect(() => {
     const fetchDivisions = async () => {
       setLoadingDivisions(true);
@@ -71,7 +69,6 @@ export default function RegistrationFormCard() {
     fetchDivisions();
   }, []);
 
-  // 2. Fetch Districts when Division changes
   useEffect(() => {
     if (!selectedDivisionId) {
       setDistricts([]);
@@ -626,6 +623,10 @@ if(error){
           )}
           <span>{isSubmitting ? "Creating Account..." : "Create Account"}</span>
         </button>
+        <Button variant="outline" className={"w-full py-3 border-red-500"}>
+         <FcGoogle/>
+         Signup With Google 
+        </Button>
       </form>
       <Toaster
   position="top-right"
