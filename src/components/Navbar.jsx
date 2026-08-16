@@ -99,7 +99,7 @@ export default function Navbar() {
         <Button
           as={Link}
           href="/donate"
-          color="danger"
+          variant="danger"
           radius="full"
           className="hidden font-semibold lg:flex"
         >
@@ -153,7 +153,7 @@ export default function Navbar() {
           <Button
             as={Link}
             href="/donate"
-            color="danger"
+            variant="danger"
             radius="full"
             className="mt-3 w-full font-semibold"
             onPress={() => setIsMenuOpen(false)}
