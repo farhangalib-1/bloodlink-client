@@ -94,11 +94,9 @@ export default function Navbar() {
             </Link>
           </li>
         </ul>
-
-        {/* Donate Now button (desktop) */}
+        
+        <Link href="/donate"> 
         <Button
-          as={Link}
-          href="/donate"
           variant="danger"
           radius="full"
           className="hidden font-semibold lg:flex"
@@ -106,7 +104,7 @@ export default function Navbar() {
           <Droplet width={16} height={16} />
           Donate Now
         </Button>
-        
+        </Link>
 
         {/* Mobile menu toggle */}
         <button
