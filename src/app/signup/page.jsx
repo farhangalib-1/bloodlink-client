@@ -4,6 +4,7 @@ import React, { useState, useEffect } from "react";
 import toast, { Toaster } from 'react-hot-toast';
 import Link from "next/link";
 import Image from "next/image";
+import { Separator } from '@heroui/react';
 import { FcGoogle } from "react-icons/fc";
 import {
   Select,
@@ -623,6 +624,11 @@ if(error){
           )}
           <span>{isSubmitting ? "Creating Account..." : "Create Account"}</span>
         </button>
+        <div className="grid grid-cols-3 items-center text-center w-full">
+        <hr />
+        <h1 className="font-semibold text-md text-gray-500">or</h1>
+        <hr />
+        </div>
         <Button variant="outline" className={"w-full py-3 border-red-500"}>
          <FcGoogle/>
          Signup With Google 
