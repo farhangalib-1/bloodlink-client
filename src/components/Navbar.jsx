@@ -105,6 +105,15 @@ export default function Navbar() {
           Donate Now
         </Button>
         </Link>
+       <Link href={"/signup"}>
+       <Button
+          variant="outline"
+          radius="full"
+          className="hidden font-semibold lg:flex"
+        >
+          Signup 
+        </Button>
+        </Link>
 
         {/* Mobile menu toggle */}
         <button
