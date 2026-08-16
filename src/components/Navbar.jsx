@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import {ArrowRightToSquare} from '@gravity-ui/icons';
 import Link from "next/link";
 import { Button, Dropdown } from "@heroui/react";
 import { Droplet, ChevronDown, Xmark } from "@gravity-ui/icons";
@@ -27,7 +28,7 @@ export default function Navbar() {
   return (
     <header className="mb-5 sticky top-0 z-50 w-full border-b border-gray-100 bg-white">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
-        {/* Brand */}
+
         <Link href="/" className="flex items-center gap-2">
           <Droplet className="text-red-600" width={28} height={28} />
           <div className="leading-tight">
@@ -40,7 +41,6 @@ export default function Navbar() {
           </div>
         </Link>
 
-        {/* Desktop links */}
         <ul className="hidden items-center gap-7 lg:flex">
           {navLinks.map((link) => (
             <li key={link.label} className="relative">
@@ -61,7 +61,6 @@ export default function Navbar() {
             </li>
           ))}
 
-          {/* Resources dropdown */}
           <li>
             <Dropdown>
               <Button variant="ghost" className="flex items-center gap-1 text-sm font-medium text-gray-700">
@@ -94,7 +93,7 @@ export default function Navbar() {
             </Link>
           </li>
         </ul>
-        
+        <div className="flex gap-4">
         <Link href="/donate"> 
         <Button
           variant="danger"
@@ -111,11 +110,21 @@ export default function Navbar() {
           radius="full"
           className="hidden font-semibold lg:flex"
         >
+          <ArrowRightToSquare/> 
           Signup 
         </Button>
         </Link>
-
-        {/* Mobile menu toggle */}
+        <Link href={"/signin"}>
+        <Button
+          variant="outline"
+          radius="full"
+          className="hidden font-semibold lg:flex border-red-500 text-red-500"
+        >
+          <ArrowRightToSquare/> 
+          Signin 
+        </Button>
+        </Link>
+            </div>
         <button
           className="text-gray-700 lg:hidden"
           onClick={() => setIsMenuOpen((prev) => !prev)}
@@ -133,7 +142,6 @@ export default function Navbar() {
         </button>
       </nav>
 
-      {/* Mobile menu */}
       {isMenuOpen && (
         <div className="border-t border-gray-100 bg-white px-4 pb-4 lg:hidden">
           <ul className="flex flex-col gap-1 pt-2">
@@ -158,9 +166,30 @@ export default function Navbar() {
               )
             )}
           </ul>
+          <Link href="/signin">
+        <Button
+          variant="outline"
+          radius="full"
+          className="mt-3 w-full font-semibold border-red-500 text-red-500"
+          onPress={() => setIsMenuOpen(false)}
+        >
+          <ArrowRightToSquare width={16} height={16}/> 
+          Signin 
+        </Button>
+        </Link>
+       <Link href="/signup">
           <Button
-            as={Link}
-            href="/donate"
+            variant="outline"
+            radius="full"
+            className="mt-3 w-full font-semibold"
+            onPress={() => setIsMenuOpen(false)}
+          >
+           <ArrowRightToSquare/> 
+           Sign Up
+          </Button>
+       </Link>
+          <Link href="/donate">
+          <Button
             variant="danger"
             radius="full"
             className="mt-3 w-full font-semibold"
@@ -169,6 +198,10 @@ export default function Navbar() {
             <Droplet width={16} height={16} />
             Donate Now
           </Button>
+       </Link>
+
+       
+       
         </div>
       )}
     </header>
