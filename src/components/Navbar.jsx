@@ -35,7 +35,7 @@ export default function Navbar() {
           <Droplet className="text-red-600" width={28} height={28} />
           <div className="leading-tight">
             <p className="text-lg font-bold text-gray-900">
-              Life<span className="text-red-600">Line</span>
+              Blood<span className="text-red-600">Link</span>
             </p>
             <p className="text-[10px] font-semibold tracking-wide text-red-600">
               BLOOD DONATION

@@ -4,7 +4,7 @@ import React, { useState, useEffect } from "react";
 import toast, { Toaster } from 'react-hot-toast';
 import Link from "next/link";
 import Image from "next/image";
-import { Separator } from '@heroui/react';
+import { Droplet, ChevronDown, Xmark } from "@gravity-ui/icons";
 import { FcGoogle } from "react-icons/fc";
 import {
   Select,
@@ -249,10 +249,17 @@ if(error){
     <div className="w-full max-w-[620px] bg-white rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.04)] border border-slate-100 p-8 md:p-12 relative mx-auto">
       {/* Header */}
       <div className="flex flex-col items-center text-center mb-8">
-        <div className="w-14 h-14 bg-red-50 rounded-full flex items-center justify-center mb-4">
-          <div className="w-10 h-10 bg-red-600 rounded-full flex items-center justify-center text-white shadow-md">
-            🩸
-          </div>
+        <div className="flex items-center mb-4">
+                    <Droplet className="text-red-600" width={28} height={28} />
+                    <div className="leading-tight">
+                      <p className="text-lg font-bold text-gray-900">
+                        Blood<span className="text-red-600">Link</span>
+                      </p>
+                      <p className="text-[10px] font-semibold tracking-wide text-red-600">
+                        BLOOD DONATION
+                      </p>
+                    </div>
+                  
         </div>
         <h1 className="text-3xl font-extrabold text-slate-900 tracking-tight">
           Create Your Account
