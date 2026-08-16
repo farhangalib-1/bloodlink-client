@@ -106,6 +106,7 @@ export default function Navbar() {
           <Droplet width={16} height={16} />
           Donate Now
         </Button>
+        
 
         {/* Mobile menu toggle */}
         <button
