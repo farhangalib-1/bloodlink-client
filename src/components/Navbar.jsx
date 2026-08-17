@@ -10,6 +10,9 @@ import { authClient } from "@/lib/auth-client"
 import {ArrowRightFromSquare, Gear, Persons} from "@gravity-ui/icons";
 import {Avatar, Label} from "@heroui/react";
 import Image from "next/image";
+import {CircleCheck} from "@gravity-ui/icons";
+
+
 
 
 const navLinks = [
@@ -117,13 +120,14 @@ export default function Navbar() {
         </Button>
         </Link>
         {
-          user ? <div className="hidden md:block">
+          user ? <div className="hidden lg:block">
       <Dropdown>
       <Dropdown.Trigger className="rounded-full">
         <Avatar>
           <Avatar.Image
             alt="Junior Garcia"
             src={user?.image}
+            className="border-2 bg-white border-red-500 rounded-full p-0.5"
           />
           <Avatar.Fallback delayMs={600}>JD</Avatar.Fallback>
         </Avatar>
@@ -135,6 +139,7 @@ export default function Navbar() {
               <Avatar.Image
                 alt="Jane"
                 src={user?.image}
+                className="border-2 bg-white border-red-500 rounded-full p-0.5"
               />
               <Avatar.Fallback delayMs={600}>JD</Avatar.Fallback>
             </Avatar>
