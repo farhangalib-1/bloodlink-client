@@ -30,6 +30,7 @@ import {
 } from "lucide-react";
 
 import { useRouter } from "next/navigation";
+import { authClient } from "@/lib/auth-client";
 
 export default function RegistrationFormCard() {
   const router  = useRouter();
@@ -227,6 +228,7 @@ export default function RegistrationFormCard() {
     upazila: formPayload.upazila,
     callbackURL: "/",
 });
+console.log(data, error)
 
 const notify = () => toast.success('Signup Successfully');
 if(!error){
