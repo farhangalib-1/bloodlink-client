@@ -48,9 +48,17 @@ const LoginPage = () => {
       <div className="w-full max-w-md border border-gray-200 rounded-2xl shadow-lg p-8 my-16">
 
         <div className="flex justify-center">
-          <div className="bg-red-50 rounded-full p-5 w-fit mb-4">
-            <Droplet className="text-red-600" size={40} />
-          </div>
+           <div className="flex items-center mb-4">
+                             <Droplet className="text-red-600" width={28} height={28} />
+                             <div className="leading-tight">
+                               <p className="text-lg font-bold text-gray-900">
+                                 Blood<span className="text-red-600">Link</span>
+                               </p>
+                               <p className="text-[10px] font-semibold tracking-wide text-red-600">
+                                 BLOOD DONATION
+                               </p>
+                             </div>
+                             </div>
         </div>
 
         <h1 className="text-2xl font-bold text-center mb-2">Welcome Back</h1>
