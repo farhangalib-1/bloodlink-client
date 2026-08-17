@@ -34,6 +34,10 @@ export const auth = betterAuth({
         type: "string",
         required: true,
       },
+      mobileNumber: {
+        type: "string",
+        required: true,
+      },
     },
   },
 });

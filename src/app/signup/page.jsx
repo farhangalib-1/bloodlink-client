@@ -27,6 +27,7 @@ import {
   LucideChevronDown,
   LucideGlobe,
   LucideLoader2,
+  Phone,
 } from "lucide-react";
 
 import { useRouter } from "next/navigation";
@@ -220,6 +221,7 @@ export default function RegistrationFormCard() {
     const { data, error } = await authClient.signUp.email({
     name: formPayload.fullName,
     email: formPayload.email,
+    mobileNumber:formPayload.mobileNumber,
     password: formPayload.password,
     image: formPayload.photoUrl,
     role: formPayload.role,
@@ -267,7 +269,7 @@ if(error){
         </p>
       </div>
 
-      <form className="space-y-5" onSubmit={handleSubmit}>
+      <form className="space-y-5 mb-5" onSubmit={handleSubmit}>
         {/* Hidden inputs sending the actual text names in FormData */}
         <input type="hidden" name="division" value={selectedDivisionName} />
         <input type="hidden" name="district" value={selectedDistrictName} />
@@ -323,6 +325,22 @@ if(error){
               name="fullName"
               required
               placeholder="Enter your full name"
+              className="w-full pl-10 pr-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-red-500 focus:bg-white transition-all placeholder:text-slate-400"
+            />
+          </div>
+        </div>
+        <div>
+          <label className="block text-xs font-bold text-slate-800 mb-1.5">
+            Mobile Number
+          </label>
+          <div className="relative">
+            
+            <Phone className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+            <input
+              type="text"
+              name="mobileNumber"
+              required
+              placeholder="Enter your Mobile Number"
               className="w-full pl-10 pr-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-red-500 focus:bg-white transition-all placeholder:text-slate-400"
             />
           </div>

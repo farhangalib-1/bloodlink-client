@@ -3,7 +3,7 @@ import { Droplet, Envelope, Handset, GeoPin } from '@gravity-ui/icons';
 
 const Footer = () => {
   return (
-    <div className="bg-[#111827] text-gray-300 px-3 md:px-20 pt-14 pb-6">
+    <div className=" bg-[#111827] text-gray-300 px-3 md:px-20 pt-14 pb-6">
 
       <div className="grid grid-cols-1 md:grid-cols-4 gap-10 pb-10">
 
