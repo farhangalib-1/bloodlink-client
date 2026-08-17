@@ -235,6 +235,7 @@ console.log(data, error)
 const notify = () => toast.success('Signup Successfully');
 if(!error){
     notify()
+    await authClient.signOut();
     setTimeout(() => {
       router.push("/signin");
     }, 3000);
