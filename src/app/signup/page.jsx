@@ -28,7 +28,7 @@ import {
   LucideGlobe,
   LucideLoader2,
 } from "lucide-react";
-import { authClient } from "@/lib/auth-client";
+
 import { useRouter } from "next/navigation";
 
 export default function RegistrationFormCard() {
@@ -106,7 +106,6 @@ export default function RegistrationFormCard() {
     fetchDistricts();
   }, [selectedDivisionId]);
 
-  // 3. Fetch Upazilas when District changes
   useEffect(() => {
     if (!selectedDistrictId) {
       setUpazilas([]);
@@ -137,7 +136,7 @@ export default function RegistrationFormCard() {
     fetchUpazilas();
   }, [selectedDistrictId]);
 
-  // Handler for Division Selection
+ 
   const handleDivisionChange = (key) => {
     const id = String(key);
     setSelectedDivisionId(id);
@@ -147,7 +146,6 @@ export default function RegistrationFormCard() {
     setSelectedDivisionName(item ? item.name || item.division : "");
   };
 
-  // Handler for District Selection
   const handleDistrictChange = (key) => {
     const id = String(key);
     setSelectedDistrictId(id);
@@ -156,8 +154,6 @@ export default function RegistrationFormCard() {
     );
     setSelectedDistrictName(item ? item.name || item.district : "");
   };
-
-  // Handler for Upazila Selection
   const handleUpazilaChange = (key) => {
     const id = String(key);
     setSelectedUpazilaId(id);
@@ -231,6 +227,7 @@ export default function RegistrationFormCard() {
     upazila: formPayload.upazila,
     callbackURL: "/",
 });
+
 const notify = () => toast.success('Signup Successfully');
 if(!error){
     notify()
@@ -247,7 +244,6 @@ if(error){
 
   return (
     <div className="w-full max-w-[620px] bg-white rounded-2xl shadow-[0_10px_40px_rgba(0,0,0,0.04)] border border-slate-100 p-8 md:p-12 relative mx-auto">
-      {/* Header */}
       <div className="flex flex-col items-center text-center mb-8">
         <div className="flex items-center mb-4">
                     <Droplet className="text-red-600" width={28} height={28} />
@@ -636,10 +632,7 @@ if(error){
         <h1 className="font-semibold text-md text-gray-500">or</h1>
         <hr />
         </div>
-        <Button variant="outline" className={"w-full py-3 border-red-500"}>
-         <FcGoogle/>
-         Signup With Google 
-        </Button>
+        
       </form>
       <Toaster
   position="top-right"
