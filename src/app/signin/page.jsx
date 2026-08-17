@@ -5,6 +5,8 @@ import { useRouter } from "next/navigation";
 import Link from "next/link";
 import { Button } from '@heroui/react'
 import { Droplet, Envelope, Lock, Eye, EyeSlash } from '@gravity-ui/icons';
+import { authClient } from "@/lib/auth-client";
+import toast, { Toaster } from 'react-hot-toast';
 
 const LoginPage = () => {
   const router = useRouter();
@@ -16,32 +18,29 @@ const LoginPage = () => {
   const [loading, setLoading] = useState(false);
 
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setError("");
-    setLoading(true);
+   e.preventDefault();
 
-    try {
-      const res = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({ email, password }),
-      });
+  const formData = new FormData(e.target);
+  const userData = Object.fromEntries(formData);
 
-      const data = await res.json();
-
-      if (!res.ok) {
-        setError(data.error || "Login failed");
-        setLoading(false);
-        return;
-      }
-
-      // login successful, redirect to home
+  const { data, error } = await authClient.signIn.email({
+    email: userData.email,
+    password: userData.password,
+    rememberMe: true,
+});
+  const notify = () => toast.success('Logged in Successfully');
+if(!error){
+    notify()
+    setTimeout(() => {
       router.push("/");
-    } catch (err) {
-      setError("Something went wrong. Please try again.");
-      setLoading(false);
+    }, 1000);
+}
+if(error){
+    toast.error(`Signup Failed: ${error.message || "Unknown error"}`);
+}
+
     }
-  };
+  
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-white px-3">
@@ -78,6 +77,7 @@ const LoginPage = () => {
           <div className="flex items-center border border-gray-300 rounded-lg px-3 py-2 mb-4">
             <Envelope className="text-gray-400 mr-2" size={18} />
             <input
+              name="email"
               type="email"
               placeholder="Enter your email"
               value={email}
@@ -91,6 +91,7 @@ const LoginPage = () => {
           <div className="flex items-center border border-gray-300 rounded-lg px-3 py-2 mb-2">
             <Lock className="text-gray-400 mr-2" size={18} />
             <input
+              name="password"
               type={showPassword ? "text" : "password"}
               placeholder="Enter your password"
               value={password}
@@ -132,6 +133,10 @@ const LoginPage = () => {
         </p>
 
       </div>
+        <Toaster
+  position="top-right"
+  reverseOrder={false}
+/>
     </div>
   )
 }

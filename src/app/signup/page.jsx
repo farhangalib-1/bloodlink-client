@@ -234,7 +234,7 @@ const notify = () => toast.success('Signup Successfully');
 if(!error){
     notify()
     setTimeout(() => {
-      router.push("/");
+      router.push("/signin");
     }, 3000);
 }
 if(error){
