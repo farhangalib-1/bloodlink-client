@@ -38,7 +38,6 @@ if(!error){
 if(error){
     toast.error(`Signup Failed: ${error.message || "Unknown error"}`);
 }
-
     }
   
 
