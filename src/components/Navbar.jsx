@@ -6,6 +6,10 @@ import Link from "next/link";
 import { Button, Dropdown } from "@heroui/react";
 import {LucideUserPlus} from "lucide-react"
 import { Droplet, ChevronDown, Xmark } from "@gravity-ui/icons";
+import { authClient } from "@/lib/auth-client"
+import {ArrowRightFromSquare, Gear, Persons} from "@gravity-ui/icons";
+import {Avatar, Label} from "@heroui/react";
+import Image from "next/image";
 
 
 const navLinks = [
@@ -24,6 +28,12 @@ const resourceLinks = [
 ];
 
 export default function Navbar() {
+  const { data: session } = authClient.useSession()
+  const user = session?.user
+  const handleSignOut = async()=>{
+    await authClient.signOut();
+  }
+  console.log(user)
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [activeLink, setActiveLink] = useState("Home");
 
@@ -106,7 +116,50 @@ export default function Navbar() {
           Donate Now
         </Button>
         </Link>
-       <Link href={"/signup"}>
+        {
+          user ? <div className="hidden md:block">
+      <Dropdown>
+      <Dropdown.Trigger className="rounded-full">
+        <Avatar>
+          <Avatar.Image
+            alt="Junior Garcia"
+            src={user?.image}
+          />
+          <Avatar.Fallback delayMs={600}>JD</Avatar.Fallback>
+        </Avatar>
+      </Dropdown.Trigger>
+      <Dropdown.Popover>
+        <div className="px-3 pt-3 pb-1">
+          <div className="flex items-center gap-2">
+            <Avatar size="sm">
+              <Avatar.Image
+                alt="Jane"
+                src={user?.image}
+              />
+              <Avatar.Fallback delayMs={600}>JD</Avatar.Fallback>
+            </Avatar>
+            <div className="flex flex-col gap-0">
+              <p className="text-sm leading-5 font-medium">{user?.name}</p>
+              <p className="text-xs leading-none text-muted">{user?.email}</p>
+            </div>
+          </div>
+        </div>
+        <Dropdown.Menu>
+          <Dropdown.Item id="dashboard" textValue="Dashboard">
+            <Label>Dashboard</Label>
+          </Dropdown.Item>
+          <Dropdown.Item id="profile" textValue="Profile">
+            <Label>Profile</Label>
+          </Dropdown.Item>
+          <Dropdown.Item id="logout" textValue="Logout" variant="danger">
+            <button onClick={handleSignOut} className="flex w-full items-center justify-between gap-2">
+              <Label>Log Out</Label>
+              <ArrowRightFromSquare className="size-3.5 text-danger" />
+            </button>
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown.Popover>
+    </Dropdown></div> : <div className="flex items-center gap-3"> <Link href={"/signup"}>
        <Button
           variant="outline"
           radius="full"
@@ -125,7 +178,9 @@ export default function Navbar() {
           <ArrowRightToSquare/> 
           Signin 
         </Button>
-        </Link>
+        </Link></div>
+        }
+      
             </div>
         <button
           className="text-gray-700 lg:hidden"
@@ -168,28 +223,42 @@ export default function Navbar() {
               )
             )}
           </ul>
-          <Link href="/signin">
+          {
+          user ? <div>
+            <div className="flex items-center gap-4 font-semibold text-[14px]">
+            <Image src={user?.image} width={40} height={40} alt={user?.name} className="rounded-full object-center" ></Image>
+            <div>
+            <h1>{user?.name}</h1>
+            <h1>{user?.email}</h1>
+            
+            </div>
+            </div>
+            <Button variant="outline" className={"w-full my-2.5"}>Dashboard</Button>
+            <Button className={"w-full"} variant="danger-soft" onClick={handleSignOut}> <ArrowRightFromSquare/> Log out</Button>
+      </div> :
+      <div> <Link href={"/signup"}>
+       <Button
+          variant="outline"
+          radius="full"
+          className="w-full mb-3 font-semibold"
+          onPress={() => setIsMenuOpen(false)}
+        >
+          <LucideUserPlus/>
+          Signup 
+        </Button>
+        </Link>
+        <Link href={"/signin"}>
         <Button
           variant="outline"
           radius="full"
-          className="mt-3 w-full font-semibold border-red-500 text-red-500"
-          onPress={() => setIsMenuOpen(false)}
+          className="w-full font-semibold lg:flex border-red-500 text-red-500"
         >
-          <ArrowRightToSquare width={16} height={16}/> 
+          <ArrowRightToSquare/> 
           Signin 
         </Button>
-        </Link>
-       <Link href="/signup">
-          <Button
-            variant="outline"
-            radius="full"
-            className="mt-3 w-full font-semibold"
-            onPress={() => setIsMenuOpen(false)}
-          >
-          <LucideUserPlus/>
-           Sign Up
-          </Button>
-       </Link>
+        </Link></div>
+        }
+          
           <Link href="/donate">
           <Button
             variant="danger"
