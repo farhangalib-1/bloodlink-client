@@ -228,6 +228,7 @@ export default function RegistrationFormCard() {
     division: formPayload.division,
     district: formPayload.district,
     upazila: formPayload.upazila,
+    bloodGroup: formPayload.bloodGroup,
     callbackURL: "/",
 });
 console.log(data, error)
@@ -387,7 +388,8 @@ if(error){
             </button>
           </div>
         </div>
-                  <div>
+
+      <div>
           <label className="block text-xs font-bold text-slate-800 mb-1.5">
             Blood Group
           </label>
@@ -402,7 +404,8 @@ if(error){
             />
           </div>
         </div>
-        {/* Role Select */}
+
+       
         <div>
           <Select className="w-full" name="role">
             <Label className="block text-xs font-bold text-slate-800 mb-1.5">
