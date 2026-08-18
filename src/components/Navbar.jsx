@@ -4,15 +4,20 @@ import { useState } from "react";
 import {ArrowRightToSquare} from '@gravity-ui/icons';
 import Link from "next/link";
 import { Button, Dropdown } from "@heroui/react";
-import {LucideUserPlus} from "lucide-react"
+import {LucideUserPlus, Phone} from "lucide-react"
 import { Droplet, ChevronDown, Xmark } from "@gravity-ui/icons";
 import { authClient } from "@/lib/auth-client"
 import {ArrowRightFromSquare, Gear, Persons} from "@gravity-ui/icons";
 import {Avatar, Label} from "@heroui/react";
 import Image from "next/image";
 import {CircleCheck} from "@gravity-ui/icons";
-
-
+import {
+  Grid2X2,
+  LogOut,
+  ChevronRight,
+  ShieldCheck,
+  Mail,
+} from "lucide-react";
 
 
 const navLinks = [
@@ -229,18 +234,128 @@ export default function Navbar() {
             )}
           </ul>
           {
-          user ? <div>
-            <div className="flex items-center gap-4 font-semibold text-[14px]">
-            <Image src={user?.image} width={40} height={40} alt={user?.name} className="rounded-full object-center" ></Image>
-            <div>
-            <h1>{user?.name}</h1>
-            <h1>{user?.email}</h1>
-            
+          user ? 
+              <div className="w-full space-y-3">
+
+      {/* Profile Card */}
+      <div className="relative overflow-hidden rounded-3xl border border-gray-200 bg-gradient-to-br from-white to-red-50/70 p-5 shadow-sm">
+
+        {/* Decorative Circle */}
+        <div className="absolute -right-10 -top-10 h-32 w-32 rounded-full bg-red-100/60" />
+
+        <div className="relative flex items-center gap-4">
+
+          {/* Profile Image */}
+          <div className="relative shrink-0">
+
+            <div className="relative h-[76px] w-[76px] overflow-hidden rounded-full border-4 border-white shadow-md">
+              <Image
+                src={user.image}
+                alt={user.name}
+                fill
+                className="object-cover"
+              />
             </div>
+
+            {/* Verified Badge */}
+            <div className="absolute -bottom-1 -right-1 flex h-7 w-7 items-center justify-center rounded-full border-2 border-white bg-red-500">
+              <ShieldCheck
+                size={15}
+                strokeWidth={2.5}
+                className="text-white"
+              />
             </div>
-            <Button variant="outline" className={"w-full my-2.5"}>Dashboard</Button>
-            <Button className={"w-full"} variant="danger-soft" onClick={handleSignOut}> <ArrowRightFromSquare/> Log out</Button>
-      </div> :
+
+          </div>
+
+          {/* User Information */}
+          <div className="min-w-0 flex-1">
+
+            <h3 className="truncate text-[17px] font-bold tracking-tight text-gray-900">
+              {user.name}
+            </h3>
+
+            <div className="mt-1 flex items-center gap-1.5">
+              <Mail
+                size={14}
+                className="shrink-0 text-gray-400"
+              />
+
+              <p className="truncate text-[13px] text-gray-500">
+                {user.email}
+              </p>
+            </div>
+            <div className="mt-1 flex items-center gap-1.5">
+              <Phone 
+                size={14}
+                className="shrink-0 text-gray-400"
+              />
+
+              <p className="truncate text-[13px] text-gray-500">
+                {user.mobileNumber}
+              </p>
+            </div>
+
+            {/* Blood Donor Badge */}
+            <div className="mt-3 flex items-center gap-2">
+
+              <span className="inline-flex items-center gap-1.5 rounded-full bg-red-50 px-3 py-1.5 text-xs font-semibold text-red-600">
+                <Droplet size={13} fill="currentColor" />
+                Blood Donor
+              </span>
+
+              <span className="rounded-full bg-gray-100 px-3 py-1.5 text-xs font-bold text-gray-700">
+                {user.bloodGroup}
+              </span>
+
+            </div>
+
+          </div>
+
+        </div>
+      </div>
+
+      {/* Dashboard */}
+      <button
+        type="button"
+        className="group flex w-full items-center justify-between rounded-2xl border border-gray-200 bg-white px-5 py-4 shadow-sm transition-all duration-200 hover:border-red-200 hover:bg-red-50/40 active:scale-[0.99]"
+      >
+
+        <div className="flex items-center gap-4">
+
+          <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-red-50 text-red-500 transition-colors group-hover:bg-red-100">
+            <Grid2X2 size={21} />
+          </div>
+
+          <div className="text-left">
+            <p className="text-[15px] font-semibold text-gray-800">
+              Dashboard
+            </p>
+
+            <p className="mt-0.5 text-xs text-gray-400">
+              Manage your account
+            </p>
+          </div>
+
+        </div>
+
+        <ChevronRight
+          size={20}
+          className="text-gray-400 transition-transform group-hover:translate-x-1"
+        />
+
+      </button>
+
+      {/* Logout */}
+      <button
+        onClick={handleSignOut}
+        type="button"
+        className="flex w-full items-center justify-center gap-2 rounded-2xl border border-gray-200 bg-white py-2 text-[15px] font-semibold text-gray-600 shadow-sm transition-all duration-200 hover:border-red-200 hover:bg-red-50 hover:text-red-600 active:scale-[0.99]"
+      >
+        <LogOut size={19} />
+        Log out
+      </button>
+    </div> :
       <div> <Link href={"/signup"}>
        <Button
           variant="outline"
@@ -271,6 +386,7 @@ export default function Navbar() {
             className="mt-3 w-full font-semibold"
             onPress={() => setIsMenuOpen(false)}
           >
+            
             <Droplet width={16} height={16} />
             Donate Now
           </Button>
