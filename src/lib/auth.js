@@ -38,6 +38,11 @@ export const auth = betterAuth({
         type: "string",
         required: true,
       },
+      bloodGroup: {
+        type: "string",
+        required: true,
+      },
+
     },
   },
 });
