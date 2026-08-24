@@ -155,9 +155,13 @@ export default function Navbar() {
           </div>
         </div>
         <Dropdown.Menu>
+         
           <Dropdown.Item id="dashboard" textValue="Dashboard">
+             <Link href={`/dashboard/${user.role}`}>
             <Label>Dashboard</Label>
+            </Link>
           </Dropdown.Item>
+         
           <Dropdown.Item id="profile" textValue="Profile">
             <Label>Profile</Label>
           </Dropdown.Item>
