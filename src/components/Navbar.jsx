@@ -157,7 +157,7 @@ export default function Navbar() {
         <Dropdown.Menu>
          
           <Dropdown.Item id="dashboard" textValue="Dashboard">
-             <Link href={`/dashboard/${user.role}`}>
+             <Link href={`/${user.role}`}>
             <Label>Dashboard</Label>
             </Link>
           </Dropdown.Item>
