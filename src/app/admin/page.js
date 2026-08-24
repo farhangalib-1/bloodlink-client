@@ -12,6 +12,7 @@ import {
   UserRound,
   LogOut,
 } from "lucide-react";
+import Link from "next/link";
 import { useRouter } from "next/navigation";
 
 
@@ -248,10 +249,11 @@ const Dashboard = () => {
             <h3 className="text-[16px] font-semibold text-[#111827]">
               Recent Requests
             </h3>
-
-            <button className="text-[12px] font-medium text-red-500 transition hover:text-red-600">
+            <Link href={"/admin/requests"}>
+            <button className="text-[12px] font-medium text-red-500 transition hover:text-red-600 cursor-pointer">
               View all
             </button>
+            </Link>
           </div>
 
           <div className="px-6">
@@ -344,13 +346,17 @@ const Dashboard = () => {
               );
             })}
           </div>
-
+            
           <div className="px-6 pb-5 pt-2 text-center">
-            <button className="text-[12px] font-medium text-red-500 transition hover:text-red-600">
+            <Link href={"/admin/user-data"}>
+            <button className="text-[12px] font-medium text-red-500 transition hover:text-red-600  cursor-pointer">
               View all users
             </button>
+            </Link>
           </div>
+           
         </div>
+       
       </section>
 
       {/* Recent Transactions */}
@@ -359,10 +365,11 @@ const Dashboard = () => {
           <h3 className="text-[16px] font-semibold text-[#111827]">
             Recent Transactions
           </h3>
-
-          <button className="text-[12px] font-medium text-red-500 transition hover:text-red-600">
+            <Link href={"/admin/transactions"}>
+          <button className="text-[12px] font-medium text-red-500 transition hover:text-red-600 cursor-pointer">
             View all
           </button>
+          </Link>
         </div>
 
         {/* Desktop Table */}
