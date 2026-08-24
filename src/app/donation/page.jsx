@@ -10,10 +10,7 @@ import {
 import heroImage from "@/assets/images/Hero-bg.png"
 import Image from "next/image";
 const DonatePage = () => {
-  const handlePayment = () => {
-    // Stripe payment logic will go here
-    console.log("Continue to Stripe");
-  };
+ 
 
   return (
     <main className="min-h-screen bg-white">
@@ -118,13 +115,15 @@ const DonatePage = () => {
 
           {/* Payment Button */}
           <div className="mt-8 flex justify-center">
-            <button
-              onClick={handlePayment}
-              className="flex w-full max-w-[310px] items-center justify-center gap-3 rounded-xl bg-[#ed1c24] px-7 py-4 text-[15px] font-semibold text-white transition hover:bg-[#d81720] hover:shadow-lg"
-            >
-              Continue to Secure Payment
+             <form action="/api/checkout_sessions" method="POST">
+      <section>
+        <button className="flex w-full max-w-[310px] items-center justify-center gap-3 rounded-xl bg-[#ed1c24] px-7 py-4 text-[15px] font-semibold text-white transition hover:bg-[#d81720] hover:shadow-lg" type="submit" role="link">
+          Continue to Secure Payment
               <ArrowRight size={20} />
-            </button>
+        </button>
+      </section>
+    </form>
+        
           </div>
 
           {/* Security Message */}
