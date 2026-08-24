@@ -25,7 +25,7 @@ const navLinks = [
   { label: "About Us", href: "/about" },
   { label: "Donate", href: "/donate" },
   { label: "Events", href: "/events" },
-  { label: "Eligibility", href: "/eligibility" },
+  { label: "Donation", href: "/donation" },
 ];
 
 const resourceLinks = [
