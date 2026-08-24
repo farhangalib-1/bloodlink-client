@@ -96,7 +96,7 @@ const DonationSuccessPage = () => {
             </Link>
 
             <Link
-              href="/donate"
+              href="/donation"
               className="flex items-center justify-center gap-2 rounded-xl bg-[#ed1c24] px-6 py-3.5 text-sm font-semibold text-white transition hover:bg-[#d81720] hover:shadow-lg"
             >
               Donate Again
