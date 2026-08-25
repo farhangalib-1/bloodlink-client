@@ -305,7 +305,7 @@ export default function Navbar() {
 
               <span className="inline-flex items-center gap-1.5 rounded-full bg-red-50 px-3 py-1.5 text-xs font-semibold text-red-600">
                 <Droplet size={13} fill="currentColor" />
-                Blood Donor
+                {user.role}
               </span>
 
               <span className="rounded-full bg-gray-100 px-3 py-1.5 text-xs font-bold text-gray-700">
