@@ -326,23 +326,25 @@ export default function Navbar() {
       >
 
         <div className="flex items-center gap-4">
-
+           
           <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-red-50 text-red-500 transition-colors group-hover:bg-red-100">
             <Grid2X2 size={21} />
           </div>
 
           <div className="text-left">
+            <Link href={`/${user.role}`}>
             <p className="text-[15px] font-semibold text-gray-800">
               Dashboard
             </p>
-
+            </Link>
             <p className="mt-0.5 text-xs text-gray-400">
               Manage your account
             </p>
+            
           </div>
 
         </div>
-
+            
         <ChevronRight
           size={20}
           className="text-gray-400 transition-transform group-hover:translate-x-1"
