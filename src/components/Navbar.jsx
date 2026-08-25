@@ -26,6 +26,7 @@ const navLinks = [
   { label: "Donate", href: "/donate" },
   { label: "Events", href: "/events" },
   { label: "Donation", href: "/donation" },
+  { label: "Blog", href: "/blog" },
 ];
 
 const resourceLinks = [
@@ -81,23 +82,7 @@ export default function Navbar() {
             </li>
           ))}
 
-          <li>
-            <Dropdown>
-              <Button variant="ghost" className="flex items-center gap-1 text-sm font-medium text-gray-700">
-                Resources
-                <ChevronDown width={16} height={16} />
-              </Button>
-              <Dropdown.Popover>
-                <Dropdown.Menu>
-                  {resourceLinks.map((item) => (
-                    <Dropdown.Item key={item.id} id={item.id} textValue={item.label}>
-                      <Link href={item.href}>{item.label}</Link>
-                    </Dropdown.Item>
-                  ))}
-                </Dropdown.Menu>
-              </Dropdown.Popover>
-            </Dropdown>
-          </li>
+          
 
           <li>
             <Link
@@ -216,7 +201,7 @@ export default function Navbar() {
       {isMenuOpen && (
         <div className="border-t border-gray-100 bg-white px-4 pb-4 lg:hidden">
           <ul className="flex flex-col gap-1 pt-2">
-            {[...navLinks, { label: "Resources", href: "/resources" }, { label: "Contact", href: "/contact" }].map(
+            {[...navLinks, { label: "Contact", href: "/contact" }].map(
               (link) => (
                 <li key={link.label}>
                   <Link
