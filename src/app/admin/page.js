@@ -12,6 +12,8 @@ import {
   UserRound,
   LogOut,
 } from "lucide-react";
+
+import { Monitor, Laptop, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 
@@ -168,11 +170,80 @@ const userOverview = [
 ];
 
 const Dashboard = () => {
+  const router = useRouter();
   
      const { data: session } = authClient.useSession()
   const user = session?.user
  
   return (
+    <>
+     <div className="flex min-h-screen items-center justify-center bg-[#fafafa] px-6 lg:hidden">
+      <div className="w-full max-w-md text-center">
+        {/* Icons */}
+        <div className="mb-7 flex items-center justify-center">
+          <div className="flex h-20 w-20 items-center justify-center rounded-2xl bg-red-50">
+            <Monitor
+              size={40}
+              strokeWidth={1.6}
+              className="text-[#e9232b]"
+            />
+          </div>
+
+          <div className="-ml-3 mt-10 flex h-12 w-12 items-center justify-center rounded-xl border-4 border-[#fafafa] bg-white shadow-sm">
+            <Laptop
+              size={25}
+              strokeWidth={1.7}
+              className="text-[#334155]"
+            />
+          </div>
+        </div>
+
+        {/* Logo */}
+        <div className="mb-6">
+          <h1 className="text-[28px] font-bold tracking-[-0.8px] text-[#111827]">
+            Blood<span className="text-[#e9232b]">Link</span>
+          </h1>
+
+          <p className="mt-1 text-[9px] font-bold tracking-[1px] text-[#111827]">
+            BLOOD DONATION
+          </p>
+        </div>
+
+        {/* Content */}
+        <h2 className="text-2xl font-bold tracking-[-0.5px] text-[#111827]">
+          Please use a larger screen
+        </h2>
+
+        <p className="mx-auto mt-4 max-w-sm text-[14px] leading-6 text-[#64748b]">
+          The BloodLink Admin Dashboard is optimized for laptops and
+          desktop computers. Please switch to a laptop or desktop to
+          continue.
+        </p>
+
+        {/* Device Info */}
+        <div className="mx-auto mt-7 flex max-w-sm items-center justify-center gap-3 rounded-xl border border-gray-200 bg-white px-5 py-4">
+          <Monitor
+            size={20}
+            strokeWidth={1.8}
+            className="text-[#e9232b]"
+          />
+
+          <span className="text-[13px] font-medium text-[#334155]">
+            Laptop or Desktop Recommended
+          </span>
+        </div>
+
+        {/* Back Button */}
+        <button
+          type="button"
+          onClick={() => router.push("/")}
+          className="mt-7 inline-flex items-center gap-2 rounded-xl bg-[#e9232b] px-5 py-3 text-[13px] font-semibold text-white transition hover:bg-[#d91f27]"
+        >
+          <ArrowLeft size={16} />
+          Back to Website
+        </button>
+      </div>
+    </div>
     <div className="min-h-screen bg-[#fafafa] px-8 py-8">
       {/* Welcome Section */}
       <section className="mb-7 flex items-center justify-between">
@@ -490,6 +561,7 @@ const Dashboard = () => {
         </div>
       </section>
     </div>
+    </>
   );
 };
 

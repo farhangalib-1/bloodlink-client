@@ -57,7 +57,7 @@ const AdminSidebar = () => {
   };
 
   return (
-    <aside className="fixed left-0 top-0 z-50 flex h-screen w-[272px] flex-col border-r border-gray-200 bg-white">
+    <aside className="fixed left-0 top-0 z-50 flex h-screen w-[272px] flex-col border-r border-gray-200 bg-white hidden lg:block">
       {/* Logo */}
       <div className="flex h-[120px] items-center px-8">
         <Link

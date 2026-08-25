@@ -9,7 +9,7 @@ const AdminHeader = () => {
       const user = session?.user
       
   return (
-    <header className="h-[90px] border-b border-gray-200 bg-white lg:left-[272px]">
+    <header className="h-[90px] border-b border-gray-200 bg-white hidden lg:block lg:left-[272px]">
       <div className="flex h-full items-center justify-between px-8">
         {/* Left - Page Title */}
         <h1 className="text-[22px] font-semibold tracking-[-0.3px] text-[#111827]">
