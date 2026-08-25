@@ -17,7 +17,8 @@ import {
   Droplet,
   CheckCircle2,
 } from "lucide-react";
-
+ import eventImage from "@/assets/images/event.png"
+import Image from "next/image";
 
 const bloodDrives = [
   {
@@ -74,43 +75,14 @@ export default function EventsPage() {
       <main className="min-h-screen bg-white text-gray-900">
 
         {/* ================= HERO ================= */}
-        <section className="relative overflow-hidden bg-gradient-to-r from-white via-white to-red-50">
+        <section>
 
-          {/* Decorative plus signs */}
-          <div className="absolute right-[15%] top-10 text-3xl font-bold text-red-500">
-            +
-          </div>
+     
 
-          <div className="absolute right-[35%] top-32 text-3xl font-bold text-red-500">
-            +
-          </div>
+          <div className="mx-auto max-w-7xl px-6 pb-16 pt-6 lg:px-8 flex items-center justify-between">
+            <div>
 
-          <div className="mx-auto max-w-7xl px-6 pb-16 pt-6 lg:px-8">
-
-            {/* Breadcrumb */}
-            <div className="mb-12 flex items-center gap-3 text-sm">
-              <a
-                href="/"
-                className="flex items-center gap-2 text-red-600 hover:text-red-700"
-              >
-                <span>⌂</span>
-                Home
-              </a>
-
-              <ChevronRight
-                size={16}
-                className="text-gray-400"
-              />
-
-              <span className="text-gray-700">
-                Blood Drives
-              </span>
-            </div>
-
-            {/* Hero Text */}
-            <div className="relative max-w-3xl">
-
-              <h1 className="mb-4 text-4xl font-bold leading-tight text-gray-900 md:text-5xl">
+              <h1 className="mb-4 text-2xl font-bold leading-tight text-gray-900 md:text-5xl">
                 Upcoming{" "}
                 <span className="text-red-600">
                   Blood Drives
@@ -119,7 +91,7 @@ export default function EventsPage() {
 
               <div className="mb-5 h-1 w-8 rounded-full bg-red-600" />
 
-              <p className="max-w-xl text-base leading-7 text-gray-700 md:text-lg">
+              <p className="max-w-xl text-[15px] leading-7 text-gray-700 md:text-lg">
                 Join our upcoming blood drives and be a hero.
                 <br />
                 Your donation can save up to three lives.
@@ -127,47 +99,15 @@ export default function EventsPage() {
 
             </div>
 
-            {/* Decorative Blood Bag */}
-            <div className="pointer-events-none absolute right-10 top-24 hidden h-[250px] w-[300px] lg:block">
-
-              {/* Bag top */}
-              <div className="absolute left-[100px] top-4 h-8 w-16 rounded-t-xl border-4 border-gray-300 bg-white/60" />
-
-              {/* Bag */}
-              <div className="absolute left-[55px] top-10 h-[145px] w-[125px] rounded-b-[35px] rounded-t-[18px] border-4 border-gray-300 bg-white/70 shadow-lg">
-
-                {/* Blood */}
-                <div className="absolute bottom-0 left-0 right-0 h-[105px] rounded-b-[28px] rounded-t-[8px] bg-red-600" />
-
-                {/* Logo */}
-                <div className="absolute left-1/2 top-[68px] flex h-12 w-12 -translate-x-1/2 -translate-y-1/2 items-center justify-center rounded-full bg-white">
-                  <Droplet
-                    size={27}
-                    fill="#dc2626"
-                    className="text-red-600"
-                  />
-                </div>
-
+            <div className="hidden lg:block">
+              <Image src={eventImage} alt="event image" width={400} height={400} ></Image>
               </div>
-
-              {/* Tube */}
-              <div className="absolute left-[105px] top-[153px] h-[95px] w-1 rotate-[28deg] rounded-full bg-red-600" />
-
-              {/* Heart */}
-              <div className="absolute right-0 top-[85px] text-red-600">
-                <HeartPulse
-                  size={115}
-                  strokeWidth={2}
-                />
               </div>
-
-            </div>
-          </div>
         </section>
 
 
         {/* ================= FILTERS ================= */}
-        <section className="-mt-2 px-6 lg:px-8">
+        <section className="mt-2 px-6 lg:px-8">
           <div className="mx-auto flex max-w-7xl flex-col gap-4 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm md:flex-row">
 
             {/* District */}

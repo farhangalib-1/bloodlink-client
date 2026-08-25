@@ -47,7 +47,7 @@ export default function Navbar() {
   const [activeLink, setActiveLink] = useState("Home");
 
   return (
-    <header className="mb-5 sticky top-0 z-50 w-full border-b border-gray-100 bg-white">
+    <header className=" sticky top-0 z-50 w-full border-b border-gray-100 bg-white">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
 
         <Link href="/" className="flex items-center gap-2">
