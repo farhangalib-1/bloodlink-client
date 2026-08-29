@@ -17,6 +17,11 @@ Phone,
 Droplet,
 CheckCircle2,
 } from "lucide-react";
+<<<<<<< HEAD
+=======
+ import eventImage from "@/assets/images/event.png"
+import Image from "next/image";
+>>>>>>> a56dc5d4b52382c13a4737ff636a7d4e1b8ecc67
 
 const bloodDrives = [
 {
@@ -73,6 +78,7 @@ return (
     {/* ================= HERO ================= */}
     <section className="relative overflow-hidden bg-gradient-to-r from-white via-white to-red-50">
 
+<<<<<<< HEAD
       {/* Decorative plus signs */}
       <div className="absolute right-[15%] top-10 text-3xl font-bold text-red-500">
         +
@@ -375,6 +381,301 @@ return (
 </>
 
 );
+=======
+        {/* ================= HERO ================= */}
+        <section>
+
+     
+
+          <div className="mx-auto max-w-7xl px-6 pb-16 pt-6 lg:px-8 flex items-center justify-between">
+            <div>
+
+              <h1 className="mb-4 text-2xl font-bold leading-tight text-gray-900 md:text-5xl">
+                Upcoming{" "}
+                <span className="text-red-600">
+                  Blood Drives
+                </span>
+              </h1>
+
+              <div className="mb-5 h-1 w-8 rounded-full bg-red-600" />
+
+              <p className="max-w-xl text-[15px] leading-7 text-gray-700 md:text-lg">
+                Join our upcoming blood drives and be a hero.
+                <br />
+                Your donation can save up to three lives.
+              </p>
+
+            </div>
+
+            <div className="hidden lg:block">
+              <Image src={eventImage} alt="event image" width={400} height={400} ></Image>
+              </div>
+              </div>
+        </section>
+
+
+        {/* ================= FILTERS ================= */}
+        <section className="mt-2 px-6 lg:px-8">
+          <div className="mx-auto flex max-w-7xl flex-col gap-4 rounded-2xl border border-gray-200 bg-white p-5 shadow-sm md:flex-row">
+
+            {/* District */}
+            <button className="flex h-12 flex-1 items-center justify-between rounded-lg border border-gray-200 px-4 text-sm text-gray-600 transition hover:border-red-300">
+
+              <span className="flex items-center gap-3">
+                <MapPin size={18} />
+                All Districts
+              </span>
+
+              <ChevronDown size={18} />
+
+            </button>
+
+
+            {/* Date */}
+            <button className="flex h-12 flex-1 items-center justify-between rounded-lg border border-gray-200 px-4 text-sm text-gray-600 transition hover:border-red-300">
+
+              <span className="flex items-center gap-3">
+                <CalendarDays size={18} />
+                All Dates
+              </span>
+
+              <ChevronDown size={18} />
+
+            </button>
+
+
+            {/* Search */}
+            <div className="flex h-12 flex-[1.2] items-center rounded-lg border border-gray-200 px-4">
+
+              <Search
+                size={18}
+                className="mr-3 text-gray-500"
+              />
+
+              <input
+                type="text"
+                placeholder="Search blood drives..."
+                className="w-full bg-transparent text-sm outline-none"
+              />
+
+            </div>
+
+
+            {/* Search Button */}
+            <button className="h-12 rounded-lg bg-red-600 px-9 text-sm font-semibold text-white transition hover:bg-red-700">
+              Search
+            </button>
+
+          </div>
+        </section>
+
+
+        {/* ================= CONTENT ================= */}
+        <section className="mx-auto max-w-7xl px-6 py-8 lg:px-8">
+
+          <div className="grid gap-7 lg:grid-cols-[1fr_320px]">
+
+            {/* ================= LEFT ================= */}
+            <div>
+
+              {/* Results Header */}
+              <div className="mb-5 flex flex-col justify-between gap-4 sm:flex-row sm:items-center">
+
+                <p className="text-sm text-gray-700">
+                  Showing{" "}
+                  <span className="font-semibold text-red-600">
+                    8
+                  </span>{" "}
+                  upcoming blood drives
+                </p>
+
+                <div className="flex items-center gap-3">
+
+                  <span className="text-sm text-gray-700">
+                    Sort by:
+                  </span>
+
+                  <button className="flex items-center gap-3 rounded-lg border border-gray-200 px-4 py-2 text-sm hover:border-red-300">
+                    Nearest Date
+                    <ChevronDown size={16} />
+                  </button>
+
+                </div>
+
+              </div>
+
+
+              {/* Blood Drive Cards */}
+              <div className="space-y-5">
+
+                {bloodDrives.map((drive, index) => (
+                  <BloodDriveCard
+                    key={index}
+                    drive={drive}
+                  />
+                ))}
+
+              </div>
+
+
+              {/* Pagination */}
+              <div className="mt-8 flex items-center justify-center gap-6">
+
+                <button className="text-gray-600 hover:text-red-600">
+                  <ChevronLeft size={20} />
+                </button>
+
+                <button className="flex h-9 w-9 items-center justify-center rounded-md bg-red-600 text-sm font-semibold text-white">
+                  1
+                </button>
+
+                <button className="text-sm hover:text-red-600">
+                  2
+                </button>
+
+                <button className="text-sm hover:text-red-600">
+                  3
+                </button>
+
+                <button className="text-gray-600 hover:text-red-600">
+                  <ChevronRight size={20} />
+                </button>
+
+              </div>
+
+            </div>
+
+
+            {/* ================= SIDEBAR ================= */}
+            <aside className="space-y-6">
+
+              {/* Eligibility */}
+              <div className="rounded-2xl bg-gradient-to-br from-red-600 to-red-700 p-7 text-white shadow-sm">
+
+                <h2 className="mb-6 text-2xl font-bold">
+                  Am I Eligible?
+                </h2>
+
+                <div className="space-y-4">
+
+                  {[
+                    "Age between 18 - 65 years",
+                    "Weight at least 50 kg",
+                    "Hemoglobin level > 12.5 g/dl",
+                    "Good health & no major illness",
+                  ].map((item) => (
+
+                    <div
+                      key={item}
+                      className="flex items-center gap-3 text-sm"
+                    >
+
+                      <CheckCircle2
+                        size={18}
+                        className="shrink-0"
+                      />
+
+                      <span>
+                        {item}
+                      </span>
+
+                    </div>
+
+                  ))}
+
+                </div>
+
+                <a
+                  href="/eligibility"
+                  className="mt-7 inline-flex rounded-lg bg-white px-6 py-3 text-sm font-semibold text-red-600 transition hover:bg-gray-100"
+                >
+                  Check Eligibility
+                </a>
+
+              </div>
+
+
+              {/* Subscribe */}
+              <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+
+                <h2 className="mb-5 text-xl font-bold">
+                  Subscribe to Updates
+                </h2>
+
+                <p className="mb-5 text-sm leading-6 text-gray-600">
+                  Get notified about upcoming blood drives in your area.
+                </p>
+
+                <input
+                  type="email"
+                  placeholder="Enter your email"
+                  className="mb-3 h-12 w-full rounded-lg border border-gray-200 px-4 text-sm outline-none focus:border-red-500"
+                />
+
+                <button className="h-12 w-full rounded-lg bg-red-600 text-sm font-semibold text-white transition hover:bg-red-700">
+                  Subscribe
+                </button>
+
+              </div>
+
+
+              {/* Help */}
+              <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm">
+
+                <h2 className="mb-4 text-xl font-bold">
+                  Need Help?
+                </h2>
+
+                <p className="mb-5 text-sm leading-6 text-gray-600">
+                  Our team is here to help you with any questions.
+                </p>
+
+                <div className="space-y-4 text-sm text-gray-700">
+
+                  <a
+                    href="/resources/faqs"
+                    className="flex items-center gap-3 hover:text-red-600"
+                  >
+                    <HelpCircle size={18} />
+                    FAQs
+                  </a>
+
+                  <a
+                    href="/contact"
+                    className="flex items-center gap-3 hover:text-red-600"
+                  >
+                    <UserRound size={18} />
+                    Contact Us
+                  </a>
+
+                  <a
+                    href="/resources/process"
+                    className="flex items-center gap-3 hover:text-red-600"
+                  >
+                    <HeartPulse size={18} />
+                    Blood Donation Process
+                  </a>
+
+                </div>
+
+                <a
+                  href="/contact"
+                  className="mt-6 flex h-11 items-center justify-center rounded-lg border border-red-500 text-sm font-semibold text-red-600 transition hover:bg-red-50"
+                >
+                  Contact Support
+                </a>
+
+              </div>
+
+            </aside>
+
+          </div>
+        </section>
+
+      </main>
+    </>
+  );
+>>>>>>> a56dc5d4b52382c13a4737ff636a7d4e1b8ecc67
 }
 
 /* =========================================================

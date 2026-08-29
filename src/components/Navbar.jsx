@@ -26,6 +26,7 @@ const navLinks = [
   { label: "Donate", href: "/donate" },
   { label: "Events", href: "/events" },
   { label: "Donation", href: "/donation" },
+  { label: "Blog", href: "/blog" },
 ];
 
 const resourceLinks = [
@@ -46,7 +47,7 @@ export default function Navbar() {
   const [activeLink, setActiveLink] = useState("Home");
 
   return (
-    <header className="mb-5 sticky top-0 z-50 w-full border-b border-gray-100 bg-white">
+    <header className=" sticky top-0 z-50 w-full border-b border-gray-100 bg-white">
       <nav className="mx-auto flex max-w-7xl items-center justify-between px-4 py-3 sm:px-6 lg:px-8">
 
         <Link href="/" className="flex items-center gap-2">
@@ -81,23 +82,7 @@ export default function Navbar() {
             </li>
           ))}
 
-          <li>
-            <Dropdown>
-              <Button variant="ghost" className="flex items-center gap-1 text-sm font-medium text-gray-700">
-                Resources
-                <ChevronDown width={16} height={16} />
-              </Button>
-              <Dropdown.Popover>
-                <Dropdown.Menu>
-                  {resourceLinks.map((item) => (
-                    <Dropdown.Item key={item.id} id={item.id} textValue={item.label}>
-                      <Link href={item.href}>{item.label}</Link>
-                    </Dropdown.Item>
-                  ))}
-                </Dropdown.Menu>
-              </Dropdown.Popover>
-            </Dropdown>
-          </li>
+          
 
           <li>
             <Link
@@ -216,7 +201,7 @@ export default function Navbar() {
       {isMenuOpen && (
         <div className="border-t border-gray-100 bg-white px-4 pb-4 lg:hidden">
           <ul className="flex flex-col gap-1 pt-2">
-            {[...navLinks, { label: "Resources", href: "/resources" }, { label: "Contact", href: "/contact" }].map(
+            {[...navLinks, { label: "Contact", href: "/contact" }].map(
               (link) => (
                 <li key={link.label}>
                   <Link
@@ -305,7 +290,7 @@ export default function Navbar() {
 
               <span className="inline-flex items-center gap-1.5 rounded-full bg-red-50 px-3 py-1.5 text-xs font-semibold text-red-600">
                 <Droplet size={13} fill="currentColor" />
-                Blood Donor
+                {user.role}
               </span>
 
               <span className="rounded-full bg-gray-100 px-3 py-1.5 text-xs font-bold text-gray-700">
