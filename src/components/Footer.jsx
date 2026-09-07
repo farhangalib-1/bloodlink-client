@@ -1,5 +1,9 @@
 import Link from "next/link";
 import { Droplet, Envelope, Handset, GeoPin } from '@gravity-ui/icons';
+import { FaFacebook } from "react-icons/fa";
+import { BsInstagram } from "react-icons/bs";
+import { FaXTwitter } from "react-icons/fa6";
+import { FaYoutube } from "react-icons/fa";
 
 const Footer = () => {
   return (
@@ -19,10 +23,10 @@ const Footer = () => {
           </div>
           <p className="text-sm mb-4">We connect donors with those in need. Every drop counts.</p>
           <div className="flex gap-3">
-            <div className="w-9 h-9 rounded-full bg-gray-700 flex items-center justify-center text-sm">f</div>
-            <div className="w-9 h-9 rounded-full bg-gray-700 flex items-center justify-center text-sm">ig</div>
-            <div className="w-9 h-9 rounded-full bg-gray-700 flex items-center justify-center text-sm">tw</div>
-            <div className="w-9 h-9 rounded-full bg-gray-700 flex items-center justify-center text-sm">yt</div>
+            <div className="w-9 h-9 rounded-full bg-gray-700 flex items-center justify-center text-sm"><FaFacebook /></div>
+            <div className="w-9 h-9 rounded-full bg-gray-700 flex items-center justify-center text-sm"><BsInstagram /></div>
+            <div className="w-9 h-9 rounded-full bg-gray-700 flex items-center justify-center text-sm"><FaXTwitter /></div>
+            <div className="w-9 h-9 rounded-full bg-gray-700 flex items-center justify-center text-sm"><FaYoutube /></div>
           </div>
         </div>
 
