@@ -10,8 +10,7 @@ const ConditionalLayout = ({ children }) => {
 
   const isDashboard =
     pathname.startsWith("/admin") ||
-    pathname.startsWith("/founder") ||
-    pathname.startsWith("/donor");
+    pathname.startsWith("/founder")
 
   if (isDashboard) {
     return <>{children}</>;

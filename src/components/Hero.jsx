@@ -8,6 +8,7 @@ import {Clock} from '@gravity-ui/icons';
 import {CircleCheckFill} from '@gravity-ui/icons';
 import React from 'react'
 import Image from 'next/image';
+import Link from 'next/link';
 
 const Hero = () => {
   return (
@@ -18,7 +19,8 @@ const Hero = () => {
            <h1 className="text-4xl md:text-6xl font-bold my-3">Donate Blood, <br /> <span className="text-red-500">Save Lives</span> </h1>
            <p className="text-sm md:text-lg font-semibold mb-3">Your single donation can save up to three lives. <br /> Be a hero. Donate Blood</p>
            <Button size="lg" variant="danger" className="mr-3"><Droplet/> Donate Now</Button>
-           <Button size="lg" variant="ghost" className="border border-red-500 text-red-500" ><Persons/> Find Donors</Button>
+           <Link href="donors">
+           <Button size="lg" variant="ghost" className="border border-red-500 text-red-500" ><Persons/> Find Donors</Button></Link>
       </div>
       <div>
         <Image src={heroImage} alt="Hero Image" width={400}></Image>

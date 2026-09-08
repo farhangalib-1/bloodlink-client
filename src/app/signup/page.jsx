@@ -229,6 +229,8 @@ export default function RegistrationFormCard() {
     district: formPayload.district,
     upazila: formPayload.upazila,
     bloodGroup: formPayload.bloodGroup,
+    age: formPayload.age,
+    gender: formPayload.gender,
     callbackURL: "/",
 });
 console.log(data, error)
@@ -344,6 +346,40 @@ if(error){
               name="mobileNumber"
               required
               placeholder="Enter your Mobile Number"
+              className="w-full pl-10 pr-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-red-500 focus:bg-white transition-all placeholder:text-slate-400"
+            />
+          </div>
+        </div>
+        
+          <div>
+          <label className="block text-xs font-bold text-slate-800 mb-1.5">
+            Age
+          </label>
+          <div className="relative">
+            
+            <Phone className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+            <input
+              type="text"
+              name="age"
+              required
+              placeholder="Enter your Age"
+              className="w-full pl-10 pr-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-red-500 focus:bg-white transition-all placeholder:text-slate-400"
+            />
+          </div>
+        </div>
+
+          <div>
+          <label className="block text-xs font-bold text-slate-800 mb-1.5">
+            Gender
+          </label>
+          <div className="relative">
+            
+            <Phone className="w-4 h-4 absolute left-3.5 top-1/2 -translate-y-1/2 text-slate-400" />
+            <input
+              type="text"
+              name="gender"
+              required
+              placeholder="Enter your Gender"
               className="w-full pl-10 pr-4 py-2.5 bg-slate-50/50 border border-slate-200 rounded-xl text-sm focus:outline-none focus:border-red-500 focus:bg-white transition-all placeholder:text-slate-400"
             />
           </div>
