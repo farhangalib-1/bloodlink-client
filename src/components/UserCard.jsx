@@ -6,6 +6,7 @@ import { MdVerifiedUser } from "react-icons/md";
 import { MdLocationOn } from "react-icons/md";
 import { FaCalendarAlt } from "react-icons/fa";
 import { IoIosMan } from "react-icons/io";
+import Link from 'next/link';
 const UserCard = ({userData}) => {
   return (
     <div className= "border border-gray-200 rounded-2xl p-5 m-5">
@@ -34,7 +35,7 @@ const UserCard = ({userData}) => {
         <h1 className='flex gap-1.5 font-semibold items-center'> <MdLocationOn className="text-red-500" />Location: {userData.district}</h1>
         <h1 className='flex gap-1.5 font-semibold items-center'  ><FaCalendarAlt className="text-red-500" />Age: {userData.age}</h1>
         <h1 className='flex gap-1.5 font-semibold items-center'  ><IoIosMan className="text-red-500" />Gender: {userData.gender}</h1>
-        <Button className="mt-1.5 w-full bg-red-500 text-white hover:bg-red-600">View Profile</Button>
+        <Link href={`/donors/${userData._id}`} ><Button className="mt-1.5 w-full bg-red-500 text-white hover:bg-red-600">View Profile</Button></Link>
     </div>
     </div>
   )
