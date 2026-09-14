@@ -118,7 +118,7 @@ export default function CreateBlog() {
               id="details"
               rows={12}
               placeholder="Write your blog content here..."
-              className="w-full resize-y rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
+              className="w-full resize-y rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-red-500 focus:ring-4 focus:ring-red-100"
             />
 
             <p className="mt-2 text-xs text-gray-400">
