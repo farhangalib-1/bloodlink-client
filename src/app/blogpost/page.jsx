@@ -118,7 +118,7 @@ export default function CreateBlog() {
               id="details"
               rows={12}
               placeholder="Write your blog content here..."
-              className="w-full resize-y rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-red-500 focus:ring-4 focus:ring-red-100"
+              className="w-full resize-y rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
             />
 
             <p className="mt-2 text-xs text-gray-400">
@@ -137,7 +137,7 @@ export default function CreateBlog() {
 
             <button
               type="button"
-              className="rounded-xl bg-red-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-red-700 active:scale-[0.98]"
+              className="rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-blue-700 active:scale-[0.98]"
             >
               Publish Blog
             </button>
