@@ -71,7 +71,20 @@ export default function CreateBlog() {
         image: imageUrl,
       };
 
-      console.log("Blog Data:", blogData);
+      const blogResponse = await fetch("https://bloodlink-serverside.vercel.app/blogs", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(blogData),
+      });
+
+      if (!blogResponse.ok) {
+        throw new Error("Failed to create blog post");
+      }
+
+      const blogResult = await blogResponse.json();
+      console.log("Blog Result:", blogResult);
     } catch (error) {
       console.error("Error:", error);
       alert("Failed to upload image.");
