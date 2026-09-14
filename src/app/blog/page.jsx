@@ -109,8 +109,6 @@ export default function BlogPage() {
       <section className="border-t border-gray-100">
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
 
-          
-
           <div className="mt-6">
             <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
               All Blogs
@@ -137,14 +135,6 @@ export default function BlogPage() {
               BLOG POSTS
           ====================== */}
           <div>
-
-            <div className="mb-5 flex items-center justify-between">
-              <p className="text-sm text-gray-600">
-                Showing <span className="font-medium text-gray-900">1–9</span>{" "}
-                of <span className="font-medium text-gray-900">32</span> blogs
-              </p>
-            </div>
-
 
             {/* Blog Grid */}
             <div className="grid grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
