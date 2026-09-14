@@ -1,4 +1,3 @@
-
 "use client";
 
 import { useState } from "react";
@@ -39,29 +38,44 @@ export default function CreateBlog() {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const blogData = {
-      title: formData.title,
-      details: formData.details,
-      image: image,
-    };
+    if (!image) {
+      alert("Please select an image.");
+      return;
+    }
 
-    console.log("Blog Data:", blogData);
+    try {
+      // Upload image to ImgBB
+      const imageData = new FormData();
+      imageData.append("image", image);
 
-    /*
-      blogData will look like:
+      const response = await fetch(
+        `https://api.imgbb.com/1/upload?key=${process.env.NEXT_PUBLIC_IMGBB_API_KEY}`,
+        {
+          method: "POST",
+          body: imageData,
+        }
+      );
 
-      {
-        title: "My Blog",
-        details: "My blog details...",
-        image: File
+      const data = await response.json();
+
+      if (!data.success) {
+        throw new Error("Image upload failed");
       }
 
-      Next step:
-      1. Upload `image` to ImageBB
-      2. Get ImageBB URL
-      3. Send title + details + ImageBB URL
-         to your backend/MongoDB
-    */
+      // Get ImgBB image URL
+      const imageUrl = data.data.url;
+
+      const blogData = {
+        title: formData.title,
+        details: formData.details,
+        image: imageUrl,
+      };
+
+      console.log("Blog Data:", blogData);
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Failed to upload image.");
+    }
   };
 
   return (
@@ -88,7 +102,6 @@ export default function CreateBlog() {
           onSubmit={handleSubmit}
           className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8"
         >
-
           {/* Image Section */}
           <div className="mb-7">
             <label className="mb-2 block text-sm font-semibold text-gray-800">
@@ -99,7 +112,6 @@ export default function CreateBlog() {
               htmlFor="blog-image"
               className="group flex min-h-64 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-xl border-2 border-dashed border-gray-300 bg-gray-50 transition hover:border-red-500 hover:bg-red-50"
             >
-
               {imagePreview ? (
                 <img
                   src={imagePreview}
@@ -195,7 +207,6 @@ export default function CreateBlog() {
 
           {/* Buttons */}
           <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
-
             <button
               type="button"
               onClick={() => {
@@ -203,6 +214,7 @@ export default function CreateBlog() {
                   title: "",
                   details: "",
                 });
+
                 setImage(null);
                 setImagePreview("");
               }}
@@ -217,11 +229,9 @@ export default function CreateBlog() {
             >
               Publish Blog
             </button>
-
           </div>
         </form>
       </div>
     </div>
   );
 }
-
