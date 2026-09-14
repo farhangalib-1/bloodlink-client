@@ -3,15 +3,35 @@
 
 import { useState } from "react";
 
-export default function CreateBlog() {
-  const [image, setImage] = useState(null);
+export default function BlogForm() {
+  const [formData, setFormData] = useState({
+    title: "",
+    details: "",
+    image: "",
+  });
 
-  const handleImageChange = (e) => {
-    const file = e.target.files[0];
+  const handleChange = (e) => {
+    const { name, value } = e.target;
 
-    if (file) {
-      setImage(URL.createObjectURL(file));
-    }
+    setFormData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+
+    console.log("Blog Data:", formData);
+
+    // Later:
+    // fetch("/api/blogs", {
+    //   method: "POST",
+    //   headers: {
+    //     "Content-Type": "application/json",
+    //   },
+    //   body: JSON.stringify(formData),
+    // });
   };
 
   return (
@@ -20,72 +40,47 @@ export default function CreateBlog() {
 
         {/* Heading */}
         <div className="mb-8">
-          
+          <p className="mb-2 text-sm font-medium text-blue-600">
+            Blog Dashboard
+          </p>
 
-          <h1 className="text-3xl font-bold tracking-tight text-gray-900">
-            Create a New Blog
+          <h1 className="text-3xl font-bold text-gray-900">
+            Create New Blog
           </h1>
 
           <p className="mt-2 text-gray-500">
-            Share your thoughts, knowledge, and experiences with your readers.
+            Create and publish a new blog post.
           </p>
         </div>
 
-        {/* Form Card */}
-        <div className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8">
+        {/* FORM */}
+        <form
+          onSubmit={handleSubmit}
+          className="rounded-2xl border border-gray-200 bg-white p-6 shadow-sm sm:p-8"
+        >
 
-          {/* Image Section */}
+          {/* Image URL */}
           <div className="mb-7">
-            <label className="mb-2 block text-sm font-semibold text-gray-800">
-              Cover Image
-            </label>
-
             <label
-              htmlFor="blog-image"
-              className="group flex min-h-64 cursor-pointer flex-col items-center justify-center overflow-hidden rounded-xl border-2 border-dashed border-gray-300 bg-gray-50 transition hover:border-red-500 hover:bg-red-50"
+              htmlFor="image"
+              className="mb-2 block text-sm font-semibold text-gray-800"
             >
-              {image ? (
-                <img
-                  src={image}
-                  alt="Blog preview"
-                  className="h-64 w-full object-cover"
-                />
-              ) : (
-                <>
-                  <div className="mb-3 rounded-full bg-red-100 p-4">
-                    <svg
-                      className="h-7 w-7 text-red-600"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M4 16l4.586-4.586a2 2 0 016.828 0L20 16m-2-2l-1.586-1.586a2 2 0 00-2.828 0L11 16m-7 4h16a1 1 0 001-1V5a1 1 0 00-1-1H5a1 1 0 00-1 1v14a1 1 0 001 1z"
-                      />
-                    </svg>
-                  </div>
-
-                  <p className="text-sm font-medium text-gray-700">
-                    Click to upload your cover image
-                  </p>
-
-                  <p className="mt-1 text-xs text-gray-400">
-                    PNG, JPG or WEBP
-                  </p>
-                </>
-              )}
-
-              <input
-                id="blog-image"
-                type="file"
-                accept="image/png,image/jpeg,image/webp"
-                onChange={handleImageChange}
-                className="hidden"
-              />
+              Image URL
             </label>
+
+            <input
+              id="image"
+              name="image"
+              type="url"
+              value={formData.image}
+              onChange={handleChange}
+              placeholder="Paste ImageBB image URL..."
+              className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
+            />
+
+            <p className="mt-2 text-xs text-gray-400">
+              Upload the image to ImageBB and paste the returned URL here.
+            </p>
           </div>
 
           {/* Title */}
@@ -99,9 +94,13 @@ export default function CreateBlog() {
 
             <input
               id="title"
+              name="title"
               type="text"
+              value={formData.title}
+              onChange={handleChange}
               placeholder="Enter your blog title..."
-              className="w-full rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-red-500 focus:ring-4 focus:ring-red-100"
+              required
+              className="w-full rounded-xl border border-gray-300 px-4 py-3 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
             />
           </div>
 
@@ -116,34 +115,42 @@ export default function CreateBlog() {
 
             <textarea
               id="details"
+              name="details"
+              value={formData.details}
+              onChange={handleChange}
               rows={12}
               placeholder="Write your blog content here..."
-              className="w-full resize-y rounded-xl border border-gray-300 bg-white px-4 py-3 text-gray-900 outline-none transition placeholder:text-gray-400 focus:border-red-500 focus:ring-4 focus:ring-red-100"
+              required
+              className="w-full resize-y rounded-xl border border-gray-300 px-4 py-3 outline-none transition focus:border-blue-500 focus:ring-4 focus:ring-blue-100"
             />
-
-            <p className="mt-2 text-xs text-gray-400">
-              Write clear and engaging content for your readers.
-            </p>
           </div>
 
           {/* Buttons */}
-          <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+          <div className="flex justify-end gap-3">
+
             <button
-              type="button"
+              type="reset"
+              onClick={() =>
+                setFormData({
+                  title: "",
+                  details: "",
+                  image: "",
+                })
+              }
               className="rounded-xl border border-gray-300 px-6 py-3 text-sm font-semibold text-gray-700 transition hover:bg-gray-50"
             >
-              Cancel
+              Clear
             </button>
 
             <button
-              type="button"
-              className="rounded-xl bg-red-600 px-6 py-3 text-sm font-semibold text-white shadow-sm transition hover:bg-red-700 active:scale-[0.98]"
+              type="submit"
+              className="rounded-xl bg-blue-600 px-6 py-3 text-sm font-semibold text-white transition hover:bg-blue-700"
             >
               Publish Blog
             </button>
-          </div>
 
-        </div>
+          </div>
+        </form>
       </div>
     </div>
   );
