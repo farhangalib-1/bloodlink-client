@@ -1,8 +1,13 @@
 "use client";
 
 import { useState } from "react";
+import { authClient } from "@/lib/auth-client"
 
 export default function CreateBlog() {
+  const { data: session } = authClient.useSession()
+  const user = session?.user;
+  const name = user?.name;
+  const userImage = user?.image;
   const [formData, setFormData] = useState({
     title: "",
     details: "",
@@ -66,6 +71,8 @@ export default function CreateBlog() {
       const imageUrl = data.data.url;
 
       const blogData = {
+        name: name,
+        userImage: userImage,
         title: formData.title,
         details: formData.details,
         image: imageUrl,
