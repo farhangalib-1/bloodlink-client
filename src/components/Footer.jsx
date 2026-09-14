@@ -72,10 +72,38 @@ const Footer = () => {
         </div>
 
       </div>
+<div className="border-t border-gray-700 pt-6 text-center">
+  {/* Copyright */}
+  <p className="text-sm text-gray-400">
+    © 2026 <span className="font-semibold text-white">BloodLink</span>{" "}
+    Blood Donation. All rights reserved.
+  </p>
 
-      <div className="border-t border-gray-700 pt-5 text-center text-xs text-gray-400">
-        © 2024 LifeLine Blood Donation. All rights reserved.
-      </div>
+  {/* Developer Credit */}
+  <div className="mt-4">
+    <p className="text-xs uppercase tracking-widest text-gray-500">
+      Designed & Developed By
+    </p>
+
+    <div className="mt-2 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm">
+      <span className="font-medium text-gray-200">
+        Farhan Ishraq Galib
+      </span>
+
+      <span className="text-gray-600">•</span>
+
+      <span className="font-medium text-gray-200">
+        Zubaer Ahmed Siam
+      </span>
+
+      <span className="text-gray-600">•</span>
+
+      <span className="font-medium text-gray-200">
+        Mashrafee Mahmud
+      </span>
+    </div>
+  </div>
+</div>
 
     </div>
   )
