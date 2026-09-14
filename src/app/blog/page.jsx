@@ -109,18 +109,7 @@ export default function BlogPage() {
       <section className="border-t border-gray-100">
         <div className="mx-auto max-w-7xl px-5 sm:px-6 lg:px-8">
 
-          <div className="flex items-center gap-2 pt-7 text-sm">
-            <Link
-              href="/"
-              className="font-medium text-red-600 hover:text-red-700"
-            >
-              Home
-            </Link>
-
-            <span className="text-gray-400">›</span>
-
-            <span className="text-gray-500">Blog</span>
-          </div>
+          
 
           <div className="mt-6">
             <h1 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
