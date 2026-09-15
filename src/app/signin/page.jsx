@@ -126,7 +126,7 @@ if(error){
 
         <p className="text-sm text-center text-gray-500 mt-6">
           Don&apos;t have an account?{" "}
-          <Link href="/register" className="text-red-600 font-semibold">
+          <Link href="/signup" className="text-red-600 font-semibold">
             Register Now
           </Link>
         </p>
