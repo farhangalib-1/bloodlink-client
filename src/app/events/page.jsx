@@ -23,7 +23,7 @@ import Image from "next/image";
 const bloodDrives = [
   {
     month: "MAY",
-    day: "25",
+    day: "27",
     year: "2024",
     title: "City Hospital Drive",
     location: "City Hospital, Dhaka",
