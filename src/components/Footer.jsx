@@ -85,20 +85,20 @@ const Footer = () => {
       Designed & Developed By
     </p>
 
-    <div className="mt-2 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm">
-      <span className="font-medium text-gray-200">
+    <div className="mt-2 flex flex-wrap items-center justify-center gap-x-3 gap-y-1 text-sm italic">
+      <span className=" text-gray-600">
         Farhan Ishraq Galib
       </span>
 
       <span className="text-gray-600">•</span>
 
-      <span className="font-medium text-gray-200">
+      <span className=" text-gray-600">
         Zubaer Ahmed Siam
       </span>
 
       <span className="text-gray-600">•</span>
 
-      <span className="font-medium text-gray-200">
+      <span className=" text-gray-600">
         Mashrafee Mahmud
       </span>
     </div>
