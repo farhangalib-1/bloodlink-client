@@ -5,3 +5,9 @@ export const getUser = async() =>{
     const data = await res.json();
     return data;
 }
+
+export const getUserById = async(Id) =>{
+    const res = await fetch(`https://bloodlink-serverside.vercel.app/users/${Id}`);
+    const data = await res.json();
+    return data;
+}
