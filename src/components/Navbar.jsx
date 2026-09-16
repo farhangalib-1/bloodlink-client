@@ -158,16 +158,8 @@ export default function Navbar() {
           </Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown.Popover>
-    </Dropdown></div> : <div className="flex items-center gap-3"> <Link href={"/signup"}>
-       <Button
-          variant="outline"
-          radius="full"
-          className="hidden font-semibold lg:flex"
-        >
-          <LucideUserPlus/>
-          Signup 
-        </Button>
-        </Link>
+    </Dropdown></div> : <div className="flex items-center gap-3"> 
+     
         <Link href={"/signin"}>
         <Button
           variant="outline"
