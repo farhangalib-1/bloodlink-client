@@ -29,7 +29,11 @@ export async function POST() {
         userName: user.name,
         userId: user.id,
         userEmail: user.email,
-        createAt: new Date(),
+        createAt: new Date().toLocaleString("en-GB", {
+    day: "2-digit",
+    month: "long",
+    year: "numeric",
+})
         
       },
       mode: 'subscription',

@@ -18,14 +18,12 @@ import { Monitor, Laptop, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-
-
-
-
-
+import paymentLogo from "@/assets/images/Stripe.png"
+import Image from "next/image";
 const Dashboard = () => {
   const[totalUser, setTotalUser] = useState(0);
   const[donations, setDonations] = useState(0);
+  const[donateUserInfo, setDonateUserInfo] = useState([]);
   const[bloodRequests, setbloodRequests] = useState(0);
   const router = useRouter();
 
@@ -33,12 +31,19 @@ const Dashboard = () => {
     const data = await allUser();
     setTotalUser(data.length - 1);
   }
-
+  const totalDonations = async()=>{
+    const res = await fetch("https://bloodlink-serverside.vercel.app/payment");
+    const data = await res.json();
+    setDonations(data.length);
+    setDonateUserInfo(data);
+    
+  }
   useEffect(()=>{
     userLength()
+    totalDonations()
   }, [])
 
-
+  console.log(donateUserInfo);
   
 const stats = [
   {
@@ -63,7 +68,7 @@ const stats = [
   },
   {
     title: "Completed Donations",
-    value: `${donations}`,
+    value: `$${donations*10}`,
     description: "from last week",
     change: "15%",
     icon: CheckCircle,
@@ -126,43 +131,6 @@ const requests = [
   },
 ];
 
-const transactions = [
-  {
-    id: "TXN12345678",
-    donor: "Ahsan Rahman",
-    amount: "৳ 500",
-    method: "bKash",
-    date: "May 24, 2024",
-  },
-  {
-    id: "TXN12345677",
-    donor: "Tasnim Ahmed",
-    amount: "৳ 300",
-    method: "Nagad",
-    date: "May 24, 2024",
-  },
-  {
-    id: "TXN12345676",
-    donor: "Rafi Islam",
-    amount: "৳ 1,000",
-    method: "Rocket",
-    date: "May 23, 2024",
-  },
-  {
-    id: "TXN12345675",
-    donor: "Mithila Jannat",
-    amount: "৳ 200",
-    method: "Stripe",
-    date: "May 23, 2024",
-  },
-  {
-    id: "TXN12345674",
-    donor: "Hasan Mahmud",
-    amount: "৳ 500",
-    method: "bKash",
-    date: "May 22, 2024",
-  },
-];
 
 const userOverview = [
   {
@@ -497,31 +465,31 @@ const userOverview = [
             </thead>
 
             <tbody>
-              {transactions.map((transaction) => (
+              {donateUserInfo.map((transaction) => (
                 <tr
-                  key={transaction.id}
+                  key={transaction._id}
                   className="border-b border-gray-100 last:border-0"
                 >
                   <td className="px-6 py-3.5 text-[12px] text-[#334155]">
-                    {transaction.id}
+                    {transaction._id}
                   </td>
 
                   <td className="px-4 py-3.5 text-[12px] font-medium text-[#111827]">
-                    {transaction.donor}
+                    {transaction.userName}
                   </td>
 
                   <td className="px-4 py-3.5 text-[12px] text-[#334155]">
-                    {transaction.amount}
+                    $10
                   </td>
 
                   <td className="px-4 py-3.5">
                     <span className="text-[12px] font-medium text-[#334155]">
-                      {transaction.method}
+                      <Image src={paymentLogo} alt="payment logo" width={50} height={25} ></Image>
                     </span>
                   </td>
 
                   <td className="px-4 py-3.5 text-[12px] text-[#334155]">
-                    {transaction.date}
+                    {transaction.createAt}
                   </td>
 
                   <td className="px-6 py-3.5">
@@ -533,53 +501,6 @@ const userOverview = [
               ))}
             </tbody>
           </table>
-        </div>
-
-        {/* Mobile Transactions */}
-        <div className="divide-y divide-gray-100 md:hidden">
-          {transactions.map((transaction) => (
-            <div key={transaction.id} className="p-5">
-              <div className="flex items-center justify-between">
-                <span className="text-[12px] font-semibold text-[#111827]">
-                  {transaction.donor}
-                </span>
-
-                <span className="rounded-md bg-green-50 px-2.5 py-1 text-[10px] font-medium text-green-600">
-                  Completed
-                </span>
-              </div>
-
-              <div className="mt-3 grid grid-cols-2 gap-3 text-[11px]">
-                <div>
-                  <p className="text-gray-400">Transaction ID</p>
-                  <p className="mt-1 text-[#334155]">
-                    {transaction.id}
-                  </p>
-                </div>
-
-                <div>
-                  <p className="text-gray-400">Amount</p>
-                  <p className="mt-1 text-[#334155]">
-                    {transaction.amount}
-                  </p>
-                </div>
-
-                <div>
-                  <p className="text-gray-400">Method</p>
-                  <p className="mt-1 text-[#334155]">
-                    {transaction.method}
-                  </p>
-                </div>
-
-                <div>
-                  <p className="text-gray-400">Date</p>
-                  <p className="mt-1 text-[#334155]">
-                    {transaction.date}
-                  </p>
-                </div>
-              </div>
-            </div>
-          ))}
         </div>
       </section>
     </div>
