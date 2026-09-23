@@ -3,13 +3,12 @@ import { useRouter } from "next/navigation";
 import { deleteUser} from "@/lib/actions";
 import {AlertDialog, Button} from "@heroui/react";
 import { MdDelete } from "react-icons/md";
-export function DeleteBtn({el, refreshUsers}) {
+export function DeleteBtn({el}) {
     const router = useRouter();
 
     const handleDlt = async(id)=>{
          await deleteUser(id);
-         await refreshUsers();
-         
+         window.location.reload();
     }
   return (
     <AlertDialog>

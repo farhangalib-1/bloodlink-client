@@ -175,7 +175,7 @@ const UserDataPage = () => {
 
                   {/* Action */}
                   <td className="px-2 py-2.5 text-center">
-                    <DeleteBtn el={el} refreshUsers={userData} />
+                    <DeleteBtn el={el} />
                   </td>
                 </tr>
               ))}
