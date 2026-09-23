@@ -1,72 +1,186 @@
 "use client";
 
-import { useRouter } from "next/navigation";
-import { ArrowLeft, Droplet, Clock3 } from "lucide-react";
+import { useEffect, useState } from "react";
+import {
+  Search,
+  ChevronDown,
+  ChevronLeft,
+  ChevronRight,
+} from "lucide-react";
 
-const ComingSoon = () => {
-  const router = useRouter();
+import paymentLogo from "@/assets/images/Stripe.png"
+import Image from "next/image";
+
+const TransactionsPage = () => {
+  const [user, setUser] = useState([])
+  const totalDonations = async()=>{
+    const res = await fetch("https://bloodlink-serverside.vercel.app/payment");
+    const data = await res.json();
+    setUser(data);
+    
+  }
+    useEffect(()=>{
+      totalDonations()
+    }, [])
+
 
   return (
-    <main className="flex min-h-screen items-center justify-center bg-[#fafafa] px-6">
-      <div className="w-full max-w-2xl text-center">
-        {/* Logo */}
-        <div className="mb-8 flex items-center justify-center gap-3">
-          <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-red-50 text-[#e9232b]">
-            <Droplet size={30} strokeWidth={2} />
-          </div>
+    <main className="min-h-screen bg-[#fafafa] px-5 py-8 md:px-8">
 
-          <div className="text-left leading-none">
-            <h1 className="text-[27px] font-bold tracking-[-0.8px] text-[#111827]">
-              Blood<span className="text-[#e9232b]">Link</span>
-            </h1>
+      {/* Header */}
+      <div className="mb-5">
+        <h1 className="text-[28px] font-bold tracking-[-0.7px] text-[#111827] md:text-[32px]">
+          All Transactions
+        </h1>
 
-            <p className="mt-1 text-[9px] font-bold tracking-[1px] text-[#111827]">
-              BLOOD DONATION
-            </p>
-          </div>
+        <p className="mt-1.5 text-[13px] text-[#64748b] md:text-[14px]">
+          View all donation payments made through the platform.
+        </p>
+      </div>
+
+      {/* Main Card */}
+      <div className="overflow-hidden rounded-xl border border-gray-200 bg-white">
+
+        {/* Desktop Table */}
+        <div className="hidden overflow-x-auto md:block">
+          <table className="w-full min-w-[850px] border-collapse">
+
+            <thead>
+              <tr className="border-b border-gray-100 bg-[#fcfcfc] text-left">
+                <th className="w-[55px] px-3 py-3 text-[11px] font-semibold text-[#334155]">
+                  #
+                </th>
+
+                <th className="px-3 py-3 text-[11px] font-semibold text-[#334155]">
+                  Transaction ID
+                </th>
+
+                <th className="px-3 py-3 text-[11px] font-semibold text-[#334155]">
+                  Donor
+                </th>
+
+                <th className="px-3 py-3 text-[11px] font-semibold text-[#334155]">
+                  Amount
+                </th>
+
+                <th className="px-3 py-3 text-[11px] font-semibold text-[#334155]">
+                  Method
+                </th>
+
+                <th className="px-3 py-3 text-[11px] font-semibold text-[#334155]">
+                  Date
+                </th>
+
+                <th className="px-3 py-3 text-[11px] font-semibold text-[#334155]">
+                  Status
+                </th>
+              </tr>
+            </thead>
+
+            <tbody>
+              {user.map((transaction, index) => (
+                <tr
+                  key={transaction._id}
+                  className="border-b border-gray-100 last:border-0"
+                >
+                  <td className="px-3 py-3 text-[11px] text-[#334155]">
+                    {index + 1}
+                  </td>
+
+                  <td className="px-3 py-3 text-[11px] text-[#475569]">
+                    {transaction._id}
+                  </td>
+
+                  <td className="px-3 py-3 text-[12px] font-semibold text-[#111827]">
+                    {transaction.userName}
+                  </td>
+
+                  <td className="px-3 py-3 text-[12px] text-[#334155]">
+                    $10
+                  </td>
+
+                  <td className="px-3 py-3">
+                    <span
+                      className={`inline-flex rounded-md px-2 py-1 text-[10px] font-semibold 
+                      `}
+                    >
+                      <Image src={paymentLogo} alt="payment logo" width={50} height={25} ></Image>
+                    </span>
+                  </td>
+
+                  <td className="px-3 py-3 text-[11px] text-[#475569]">
+                    {transaction.createAt}
+                  </td>
+
+                  <td className="px-3 py-3">
+                    <span className="inline-flex rounded-md bg-green-50 px-2.5 py-1 text-[10px] font-semibold text-green-600">
+                      Completed
+                    </span>
+                  </td>
+                </tr>
+              ))}
+
+             
+            </tbody>
+          </table>
         </div>
 
-        {/* Icon */}
-        <div className="mx-auto mb-7 flex h-20 w-20 items-center justify-center rounded-full bg-red-50">
-          <Clock3
-            size={38}
-            strokeWidth={1.7}
-            className="text-[#e9232b]"
-          />
+        {/* Bottom / Pagination */}
+        <div className="flex flex-col gap-4 px-3 py-4 sm:flex-row sm:items-center sm:justify-between">
+
+          <p className="text-[11px] text-[#475569]">
+            Showing 1 to 10 of 1,256 transactions
+          </p>
+
+          <div className="flex items-center gap-1">
+
+            <button
+              type="button"
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 text-gray-500 transition hover:bg-gray-50"
+            >
+              <ChevronLeft size={15} />
+            </button>
+
+            <button
+              type="button"
+              className="flex h-8 w-8 items-center justify-center rounded-lg bg-[#ed1c24] text-[11px] font-semibold text-white"
+            >
+              1
+            </button>
+
+            {[2, 3, 4, 5].map((page) => (
+              <button
+                key={page}
+                type="button"
+                className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 text-[11px] text-gray-700 transition hover:bg-gray-50"
+              >
+                {page}
+              </button>
+            ))}
+
+            <span className="flex h-8 w-8 items-center justify-center text-[11px] text-gray-500">
+              ...
+            </span>
+
+            <button
+              type="button"
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 text-[11px] text-gray-700 transition hover:bg-gray-50"
+            >
+              126
+            </button>
+
+            <button
+              type="button"
+              className="flex h-8 w-8 items-center justify-center rounded-lg border border-gray-200 text-gray-500 transition hover:bg-gray-50"
+            >
+              <ChevronRight size={15} />
+            </button>
+
+          </div>
         </div>
-
-        {/* Content */}
-        <p className="mb-3 text-sm font-semibold uppercase tracking-[3px] text-[#e9232b]">
-          Coming Soon
-        </p>
-
-        <h2 className="text-4xl font-bold tracking-[-1px] text-[#111827] sm:text-5xl">
-          Something amazing is
-          <span className="text-[#e9232b]"> coming soon.</span>
-        </h2>
-
-        <p className="mx-auto mt-5 max-w-lg text-[15px] leading-7 text-[#64748b]">
-          We&apos;re working hard to bring this feature to BloodLink.
-          Stay tuned — it will be available soon.
-        </p>
-
-        {/* Back Button */}
-        <button
-          type="button"
-          onClick={() => router.back()}
-          className="mt-8 inline-flex items-center gap-2 rounded-xl bg-[#e9232b] px-6 py-3.5 text-sm font-semibold text-white shadow-sm transition hover:bg-[#d91f27] hover:shadow-md"
-        >
-          <ArrowLeft size={17} />
-          Go Back
-        </button>
-
-        {/* Bottom Text */}
-        <p className="mt-8 text-xs text-[#94a3b8]">
-          BloodLink — Connecting donors with those in need.
-        </p>
       </div>
     </main>
   );
 };
 
-export default ComingSoon;
+export default TransactionsPage;
