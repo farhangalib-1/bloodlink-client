@@ -1,5 +1,6 @@
 "use client";
 
+import {allUser} from "@/lib/actions";
 import { authClient } from "@/lib/auth-client";
 import {
   Droplet,
@@ -16,8 +17,29 @@ import {
 import { Monitor, Laptop, ArrowLeft } from "lucide-react";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
 
 
+
+
+
+const Dashboard = () => {
+  const[totalUser, setTotalUser] = useState(0);
+  const[donations, setDonations] = useState(0);
+  const[bloodRequests, setbloodRequests] = useState(0);
+  const router = useRouter();
+
+    const userLength = async()=>{
+    const data = await allUser();
+    setTotalUser(data.length - 1);
+  }
+
+  useEffect(()=>{
+    userLength()
+  }, [])
+
+
+  
 const stats = [
   {
     title: "Total Donations",
@@ -31,7 +53,7 @@ const stats = [
   },
   {
     title: "Pending Requests",
-    value: "84",
+    value: `${bloodRequests}`,
     description: "urgent",
     change: "12 urgent",
     icon: ClipboardList,
@@ -41,7 +63,7 @@ const stats = [
   },
   {
     title: "Completed Donations",
-    value: "982",
+    value: `${donations}`,
     description: "from last week",
     change: "15%",
     icon: CheckCircle,
@@ -51,7 +73,7 @@ const stats = [
   },
   {
     title: "Total Users",
-    value: "2,340",
+    value: `${totalUser}`,
     description: "from last week",
     change: "18%",
     icon: Users,
@@ -169,12 +191,12 @@ const userOverview = [
   },
 ];
 
-const Dashboard = () => {
-  const router = useRouter();
   
-     const { data: session } = authClient.useSession()
-  const user = session?.user
- 
+
+  
+  const { data: session } = authClient.useSession();
+  const user = session?.user;
+
   return (
     <>
      <div className="flex min-h-screen items-center justify-center bg-[#fafafa] px-6 lg:hidden">
@@ -244,7 +266,7 @@ const Dashboard = () => {
         </button>
       </div>
     </div>
-    <div className="min-h-screen bg-[#fafafa] px-8 py-8">
+    <div className="min-h-screen bg-[#fafafa] px-8 py-8 hidden lg:block">
       {/* Welcome Section */}
       <section className="mb-7 flex items-center justify-between">
         <div>
