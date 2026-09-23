@@ -1,6 +1,6 @@
 "use client";
 
-import {allUser} from "@/lib/actions";
+import {allUser, getUser} from "@/lib/actions";
 import { authClient } from "@/lib/auth-client";
 import {
   Droplet,
@@ -25,6 +25,8 @@ const Dashboard = () => {
   const[donations, setDonations] = useState(0);
   const[donateUserInfo, setDonateUserInfo] = useState([]);
   const[bloodRequests, setbloodRequests] = useState(0);
+  const[totalDoner, setTotalDoner] = useState(0);
+  const[requesters, setRequesters] = useState(0);
   const router = useRouter();
 
     const userLength = async()=>{
@@ -38,9 +40,14 @@ const Dashboard = () => {
     setDonateUserInfo(data);
     
   }
+  const doner = async()=>{
+    const res = await getUser();
+    setTotalDoner(res.length);
+  }
   useEffect(()=>{
     userLength()
     totalDonations()
+    doner()
   }, [])
 
   console.log(donateUserInfo);
@@ -135,19 +142,19 @@ const requests = [
 const userOverview = [
   {
     label: "Total Users",
-    value: "2,340",
+    value: `${totalUser}`,
     icon: Users,
     iconColor: "text-slate-600",
   },
   {
     label: "Donors",
-    value: "1,842",
+    value: `${totalDoner}`,
     icon: Heart,
     iconColor: "text-red-500",
   },
   {
     label: "Requesters",
-    value: "498",
+    value: `${requesters}`,
     icon: ClipboardList,
     iconColor: "text-slate-600",
   },

@@ -1,4 +1,5 @@
-'use server'
+
+    "use server"
 export const getUser = async() =>{
     const res = await fetch("https://bloodlink-serverside.vercel.app/users", {
         cache: "no-store",
@@ -20,3 +21,14 @@ export const allUser = async() =>{
 
 }
 
+
+export const deleteUser = async(Id) =>{
+
+    const res = await fetch(`https://bloodlink-serverside.vercel.app/users/${Id}`,{
+        method: 'DELETE'
+    }
+    );
+    const data = await res.json();
+   console.log(data)
+    return data;
+}
