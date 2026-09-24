@@ -14,14 +14,14 @@ import { FaMapLocationDot } from "react-icons/fa6";
 import { MdLocationCity } from "react-icons/md";
 import { IoLocation } from "react-icons/io5";
 import { FaPaperPlane } from "react-icons/fa";
-
+import avater from "@/assets/images/avatar.jpg"
 const IndividualUserInfo = ({ userInfo }) => {
   return (
     <div>
      <div >
         <div className="p-4 m-7 border-2 border-gray-50 rounded-2xl shadow-lg shadow-gray-50 grid md:grid-cols-3 grid-cols-1  gap-5 ">
             <div className="flex flex-col items-center gap-2">
-            <Image src={userInfo.image} alt={userInfo.name} width={200} height={200}  priority quality={75} sizes="200px" className="rounded-2xl" />
+            <Image src={userInfo.image || avater} alt={userInfo.name} width={200} height={200}  priority quality={75} sizes="200px" className="rounded-2xl" />
             <p className="text-green-600 font-semibold text-xs flex items-center"> <GoDotFill/> Availabe to Donate</p>
             </div>
             <div className="space-y-1">
