@@ -21,6 +21,18 @@ export const allUser = async() =>{
 
 }
 
+export const blogs = async() =>{
+    const res = await fetch(`https://bloodlink-serverside.vercel.app/blogs`);
+    const data = await res.json();
+    return data;
+}
+
+export const blog = async (Id)=>{
+    const res = await fetch(`https://bloodlink-serverside.vercel.app/blogs/${Id}`);
+    const data = await res.json();
+    return data;
+
+}
 
 export const deleteUser = async(Id) =>{
 
