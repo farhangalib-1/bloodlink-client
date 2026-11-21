@@ -15,10 +15,12 @@ const Hero = () => {
     <div>
     <div className="flex gap-15 md:gap-0 mx-3 flex-col md:flex-row md:justify-between items-center md:mx-20">
       <div>
-           <Chip  color="danger" variant='soft' size="md"> <HeartPulse /> Donate. Inspire. Save</Chip> 
+           <Chip className="mt-5" color="danger" variant='soft' size="md"> <HeartPulse /> Donate. Inspire. Save</Chip> 
            <h1 className="text-4xl md:text-6xl font-bold my-3">Donate Blood, <br /> <span className="text-red-500">Save Lives</span> </h1>
            <p className="text-sm md:text-lg font-semibold mb-3">Your single donation can save up to three lives. <br /> Be a hero. Donate Blood</p>
+           <Link href="/donate">
            <Button size="lg" variant="danger" className="mr-3"><Droplet/> Donate Now</Button>
+           </Link>
            <Link href="donors">
            <Button size="lg" variant="ghost" className="border border-red-500 text-red-500" ><Persons/> Find Donors</Button></Link>
       </div>
