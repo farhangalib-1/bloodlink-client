@@ -9,6 +9,7 @@ export default function DonatePage() {
 
   const [isFirstTime, setIsFirstTime] = useState(false);
   const [error, setError] = useState("");
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
   const [formData, setFormData] = useState({
     name: "",
@@ -75,9 +76,10 @@ export default function DonatePage() {
     }
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
+    if (isSubmitting) return;
     setError("");
 
     // -----------------------------
@@ -141,12 +143,35 @@ export default function DonatePage() {
         : formData.previousDonationDate,
     };
 
-    // For now, this only prints the application data.
-    // Later, this is where we will send it to your database.
-    console.log("Donation Application:", applicationData);
+    // Submit the application to the deployed Express API.
+    setIsSubmitting(true);
 
-    // Redirect after successful validation
-    router.push("/donate/success");
+    try {
+      const apiBaseUrl = (
+        process.env.NEXT_PUBLIC_API_URL || "http://localhost:5000"
+      ).replace(/\/$/, "");
+
+      const response = await fetch(`${apiBaseUrl}/donation-requests`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(applicationData),
+      });
+
+      const result = await response.json().catch(() => ({}));
+
+      if (!response.ok) {
+        throw new Error(result.message || "Unable to submit your application. Please try again.");
+      }
+
+      router.push("/donate/success");
+    } catch (submitError) {
+      setError(
+        submitError.message ||
+          "Could not connect to the server. Please check your internet connection and try again."
+      );
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -491,9 +516,10 @@ export default function DonatePage() {
 
                   <button
                     type="submit"
-                    className="w-full rounded-lg bg-[#e30613] px-6 py-3.5 text-sm font-bold text-white shadow-md shadow-red-200 transition hover:bg-[#c80511] hover:shadow-lg active:scale-[0.99]"
+                    disabled={isSubmitting}
+                    className="w-full rounded-lg bg-[#e30613] px-6 py-3.5 text-sm font-bold text-white shadow-md shadow-red-200 transition hover:bg-[#c80511] hover:shadow-lg active:scale-[0.99] disabled:cursor-not-allowed disabled:opacity-60"
                   >
-                    Apply for Donation
+                    {isSubmitting ? "Submitting Application..." : "Apply for Donation"}
                   </button>
 
                 </div>
