@@ -2,8 +2,12 @@
 
 import { useState } from "react";
 import { authClient } from "@/lib/auth-client"
+import toast, { Toaster } from 'react-hot-toast';
+import { useRouter } from "next/navigation";
+
 
 export default function CreateBlog() {
+  const router = useRouter();
   const { data: session } = authClient.useSession()
   const user = session?.user;
   const name = user?.name;
@@ -85,6 +89,16 @@ export default function CreateBlog() {
         },
         body: JSON.stringify(blogData),
       });
+      const notify = () => toast.success('Blog created successfully');
+      if(blogResponse.ok){
+          notify()
+          setTimeout(() => {
+            router.push("/blog");
+          }, 1000);
+      }
+      if(!blogResponse.ok){
+          toast.error(`Signup Failed: ${error.message || "Unknown error"}`);
+      }
 
       if (!blogResponse.ok) {
         throw new Error("Failed to create blog post");
@@ -100,6 +114,7 @@ export default function CreateBlog() {
 
   return (
     <div className="min-h-screen bg-gray-50 px-4 py-10">
+      
       <div className="mx-auto max-w-3xl">
 
         {/* Heading */}
@@ -252,6 +267,10 @@ export default function CreateBlog() {
           </div>
         </form>
       </div>
-    </div>
+    <Toaster
+  position="top-right"
+  reverseOrder={false}
+/>
+  </div>
   );
 }
