@@ -16,5 +16,5 @@ const session = await auth.api.getSession({
 }
  
 export const config = {
-  matcher: ['/donors/:path*', '/blogpost'],
+  matcher: ['/donors/:path+', '/blogpost'],
 }
