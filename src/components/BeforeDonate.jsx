@@ -4,25 +4,13 @@ import Link from "next/link";
 import bloodImage from "@/assets/images/blood-3.png";
 import blog1 from "@/assets/images/blog-1.png";
 import blog2 from "@/assets/images/blog-2.png";
+import { blogs } from "@/lib/actions";
 
-const blogPosts = [
-  {
-    id: 1,
-    title: "5 Benefits of Donating Blood",
-    description:
-      "Blood donation is not just good for others, it's good for you too.",
-    date: "May 15, 2024",
-    image: blog1,
-  },
-  {
-    id: 2,
-    title: "How Your Blood Saves Lives",
-    description:
-      "From emergency patients to surgeries, your blood is there to help.",
-    date: "May 5, 2024",
-    image: blog2,
-  },
-];
+
+ 
+
+
+
 
 const donationTips = [
   "Eat a healthy meal before donation",
@@ -31,7 +19,12 @@ const donationTips = [
   "Bring a valid ID with you",
 ];
 
-export default function BeforeDonate() {
+export default async function BeforeDonate() {
+
+  const allBlogPosts = await blogs();
+  const latestBlogPosts = allBlogPosts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+  .slice(0, 2);
+  const date = allBlogPosts.map(el => new Date(el.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }));
   return (
     <section className="w-full bg-white py-8">
       <div className="mx-auto w-full max-w-[1160px] px-4 sm:px-6 lg:px-8">
@@ -87,9 +80,9 @@ export default function BeforeDonate() {
             </div>
 
             <div className="space-y-4">
-              {blogPosts.map((post) => (
+              {latestBlogPosts.map((post) => (
                 <article
-                  key={post.id}
+                  key={post._id}
                   className="flex gap-4"
                 >
                   {/* Clickable blog image */}
@@ -121,7 +114,14 @@ export default function BeforeDonate() {
                     </p>
 
                     <p className="mt-1.5 text-[9px] text-[#999]">
-                      {post.date}
+                     
+      {new Date(post.createdAt).toLocaleDateString("en-BD", {
+        day: "numeric",
+        month: "long",
+        year: "numeric",
+        timeZone: "Asia/Dhaka",
+      })}
+    
                     </p>
                   </div>
                 </article>

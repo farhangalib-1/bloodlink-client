@@ -4,6 +4,24 @@ import { Calendar, Clock, ArrowRight, PenLine, Mail } from "lucide-react";
 import Link from 'next/link';
 const BlogsPage = async () => {
   const allBlogPosts = await blogs();
+  const popularPosts = allBlogPosts.slice(0,3);
+  const allBlog = popularPosts.map((el) => (
+    <div key={el._id} className="flex items-center gap-4">
+      <div className="h-16 w-16 flex-shrink-0 overflow-hidden rounded-lg">
+        <img
+          src={el.image}
+          alt={el.title}
+          className="h-full w-full object-cover"
+        />
+      </div>
+      <div>
+        <h3 className="text-sm font-semibold text-gray-900">
+          <Link href={`/blog/${el._id}`}>{el.title}</Link>
+        </h3>
+        
+      </div>
+    </div>
+  ));
 
   console.log(allBlogPosts);
 
@@ -79,7 +97,7 @@ const BlogsPage = async () => {
 
               <div className="space-y-4">
 
-                
+                {allBlog}
 
               </div>
 
