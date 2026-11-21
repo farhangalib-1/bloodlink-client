@@ -22,7 +22,11 @@ export const allUser = async() =>{
 }
 
 export const blogs = async() =>{
-    const res = await fetch(`https://bloodlink-serverside.vercel.app/blogs`);
+    const res = await fetch(`https://bloodlink-serverside.vercel.app/blogs`,
+    {
+        cache: "no-store",
+    }
+    );
     const data = await res.json();
     return data;
 }
