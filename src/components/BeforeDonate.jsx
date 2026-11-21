@@ -24,7 +24,6 @@ export default async function BeforeDonate() {
   const allBlogPosts = await blogs();
   const latestBlogPosts = allBlogPosts.sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
   .slice(0, 2);
-  const date = allBlogPosts.map(el => new Date(el.createdAt).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }));
   return (
     <section className="w-full bg-white py-8">
       <div className="mx-auto w-full max-w-[1160px] px-4 sm:px-6 lg:px-8">
