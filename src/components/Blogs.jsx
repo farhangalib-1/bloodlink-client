@@ -3,6 +3,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { Calendar, Clock, ArrowRight, PenLine, Mail } from "lucide-react";
+import { Button } from "@heroui/react";
 
 
 
@@ -42,7 +43,7 @@ export default function Blogs({ el }) {
                 >
 
                   {/* Image */}
-                  <Link href={`/blog/${el._id}`}>
+                 
                     <div className="relative h-48 w-full overflow-hidden bg-gray-100">
 
                       <Image
@@ -53,7 +54,7 @@ export default function Blogs({ el }) {
                       />
 
                     </div>
-                  </Link>
+    
 
 
                   {/* Card Content */}
@@ -66,11 +67,11 @@ export default function Blogs({ el }) {
 
 
                     {/* Title */}
-                    <Link href={`/blog/${el._id}`}>
+                    
                       <h2 className="line-clamp-2 text-base font-bold leading-6 text-gray-900 transition-colors group-hover:text-red-600">
                         {el.title}
                       </h2>
-                    </Link>
+                    
 
 
                     {/* Description */}
@@ -91,9 +92,13 @@ export default function Blogs({ el }) {
                         <Clock size={13} />
                         <span>{formattedTime}</span>
                       </div>
-
+       
                     </div>
-
+                    <Link href={`/blog/${el._id}`}>
+            <Button className="bg-red-600 text-white hover:bg-red-700 w-full mt-4 flex items-center justify-center gap-2 px-4 py-2 rounded-lg transition">
+          Read More
+        </Button>
+        </Link>
                   </div>
                 </article>
             
